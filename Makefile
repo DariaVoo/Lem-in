@@ -52,6 +52,7 @@ clean:
 
 fclean: clean
 	make -sC $(LIBFT_DIR) fclean
+	rm -f $(NAME)
 	rm -f $(LIBFT)
 
 re: fclean all
