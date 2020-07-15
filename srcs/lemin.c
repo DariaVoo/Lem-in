@@ -17,7 +17,7 @@ void print_graph(int **graph, size_t size)
 	size_t i = 0;
 	size_t j = 0;
 	ft_printf("size %d\n", size);
-	ft_printf("вершина смежные вершины\n");
+	ft_printf("вершина: смежные вершины\n");
 	while (i < size) {
 		j = 0;
 		ft_printf("%d:\t", i);
