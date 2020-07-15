@@ -23,6 +23,7 @@
 
 char				*ft_itoadouble(long double n);
 void				free_table(void **arr, int position);
+int					**new_table(int n, int m);
 int					get_next_line(const int fd, char **line);
 void				*ft_memset(void *dest, int ch, size_t len);
 void				ft_bzero(void *s, size_t n);

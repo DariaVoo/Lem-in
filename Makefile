@@ -1,5 +1,5 @@
 NAME = lem-in
-CFLAGS := -Wall -Wextra -Werror
+# CFLAGS := -Wall -Wextra -Werror
 
 LIBFT_DIR = ft_printf/
 LIBFT = $(LIBFT_DIR)libftprintf.a
@@ -18,17 +18,18 @@ SRC_DIR_OUTPUT = output/
 
 SRC_MAIN = lemin.c
 SRC_PARSE_FILES =
-SRC_LOGIC_FILES =
+SRC_LOGIC_FILES = bfs.c
 SRC_OUTPUT_FILES =
-
-SRCS_LST = $(SRC_MAIN) $(SRC_PARSE_FILES) $(SRC_LOGIC_FILES) $(SRC_OUTPUT_FILES)
 
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))
 SRC_LOGIC = $(addprefix $(SRC_DIR_LOGIC), $(SRC_LOGIC_FILES))
 SRC_OUTPUT = $(addprefix $(SRC_DIR_OUTPUT), $(SRC_OUTPUT_FILES))
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_LST))
 
+SRCS_LST = $(SRC_MAIN) $(SRC_PARSE) $(SRC_LOGIC) $(SRC_OUTPUT)
+
 OBJ_DIR = objects/
+OBJ_DIRS = $(addprefix $(OBJ_DIR), $(SRC_DIR_PARSE)) $(addprefix $(OBJ_DIR), $(SRC_DIR_LOGIC)) $(addprefix $(OBJ_DIR), $(SRC_DIR_OUTPUT))
 OBJ_LST = $(patsubst %.c, %.o, $(SRCS_LST))
 OBJ	= $(addprefix $(OBJ_DIR), $(OBJ_LST))
 
@@ -41,7 +42,7 @@ $(LIBFT):
 	make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR) $(OBJ_DIRS)
 
 objects/%.o : srcs/%.c $(HEADERS)
 	gcc $(CFLAGS) -c $(INCLUDES) $< -o $@
