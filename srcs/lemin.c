@@ -37,7 +37,8 @@ int	main(void)
 	size_t count_v = 8;
 
 	graph = new_table(count_v, 5);
-	/**заполняем*/
+	/** заполняем массив смежности
+	 * вершина: смежные вершины*/
 	graph[0][0] = 1; //  из вершины s
 	graph[0][1] = 3;
 	graph[0][2] = 4;
@@ -47,6 +48,7 @@ int	main(void)
 	graph[4][0] = 5;
 	graph[4][1] = 6;
 
+
 	graph[5][0] = 7; // в t
 	graph[2][0] = 7;
 	graph[6][0] = 7;
@@ -54,7 +56,6 @@ int	main(void)
 
 	int *distance = bfs(graph, count_v);
 	print_arr(distance, count_v);
-
 
 	return (0);
 }
