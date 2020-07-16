@@ -47,24 +47,36 @@ void print_graph(int **graph, size_t size)
 int	main(void)
 {
 	int **graph;
-	size_t count_v = 8;
+	size_t count_v = 11;
 
 	graph = new_table(count_v, 5);
 	/** заполняем массив смежности
 	 * вершина: смежные вершины*/
 	graph[0][0] = 1; //  из вершины s
-	graph[0][1] = 3;
-	graph[0][2] = 4;
+	graph[0][1] = 2;
+	graph[0][2] = 3;
 
-	graph[1][0] = 2;
-	graph[3][0] = 2;
-	graph[4][0] = 5;
-	graph[4][1] = 6;
+	graph[1][0] = 4;
+	graph[1][1] = 5;
 
+	graph[2][0] = 3;
+	graph[2][1] = 5;
 
-	graph[5][0] = 7; // в t
-	graph[2][0] = 7;
-	graph[6][0] = 7;
+	graph[3][0] = 6;
+	graph[4][0] = 8;
+
+	graph[5][0] = 8;
+	graph[5][1] = 7;
+
+	graph[6][0] = 5;
+	graph[6][1] = 9;
+	graph[9][0] = 6;
+
+	graph[7][1] = 5;
+	graph[7][2] = 8;
+
+	graph[8][0] = 10; // в t
+	graph[7][0] = 10;
 	print_graph(graph, count_v);
 
 	int *path = dinic(graph, count_v);

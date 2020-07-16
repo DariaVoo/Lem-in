@@ -20,23 +20,25 @@ int *dfs(size_t start, int *adjacent_v, char *visited, int *prev, size_t count_v
 }
 
 
-//ptr-available - указатель на первую неудалённю смежную вершину (неудалённое ребро)
-int *find_path(int start, int end, int **graph, int *distance, char *visited, int *prev, int *ptr_available) {
+//ptr-available - указатель на первую неудалённую смежную вершину (неудалённое ребро)
+int *find_path(int start, int end, int **graph, int *distance, char *visited, int *prev)
+{
 	int u;
+	int i = 0;
 
 	if (start == end)
 		return (prev);
-	while ((u = graph[start][ptr_available[start]]) != 0)
+	while (((u = graph[start][i]) != 0) && (visited[u] == '\0'))
 	{
-		ptr_available[start]++;
-		if (distance[u] != distance[start] + 1) // если смежная вершина не в следующем слое, пропускаем её
-			continue ;
-		if (visited[u] == '\0')//wtf
+		if (distance[u] == distance[start] + 1) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 		{
+			visited[start] = '1'; // Отмечаем, что посетили эту вершину
+			graph[start][0] = 0;
 			prev[u] = start;
-/*			find_path(u, adjacent_v, visited, prev);
-			return ;*/
+			find_path(u, end, graph, distance, visited, prev);
+			//return (0);
 		}
+		i++;
 	}
 	return (0);
 }

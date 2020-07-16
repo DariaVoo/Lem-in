@@ -28,5 +28,6 @@ int bfs(int **graph, size_t count_v, int *distance, int *queue, int *prev)
 			j++;
 		}
 	}
-	return (distance[count_v]);
+	ft_printf("BFS: %d", distance[count_v - 1]);
+	return (distance[count_v - 1]);
 }
