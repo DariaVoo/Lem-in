@@ -54,7 +54,7 @@ int	main(void)
 	graph[6][0] = 7;
 	print_graph(graph, count_v);
 
-	int *distance = bfs(graph, count_v);
+	int *distance = dinic(graph, count_v);
 	print_arr(distance, count_v);
 
 	return (0);

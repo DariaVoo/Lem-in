@@ -1,18 +1,10 @@
 #include "lemin.h"
 
-int *bfs(int **graph, size_t count_v)
+int bfs(int **graph, size_t count_v, int *distance, int *queue)
 {
-	int *distance; // расстояния до вершин
-	int *queue; // очередь
 	int j; // индекс для второй стороны ребра (u, v)
 	int v;
 	int head, end;
-
-	if (!(distance = (int *)malloc(sizeof(int) * count_v)))
-		return (NULL);
-	if (!(queue = (int *)malloc(sizeof(int) * count_v)))
-		return (NULL);
-	ft_memset(queue, 0, count_v);
 
 	ft_printf("in BFS\n");
 	head = 0; // индекс начала очереди
@@ -35,6 +27,7 @@ int *bfs(int **graph, size_t count_v)
 			j++;
 		}
 	}
+	free(queue);
 
-	return (distance);
+	return (distance[count_v]);
 }

@@ -12,7 +12,9 @@
 	struct s_que	*prev;
 }					t_que;*/
 
-int *bfs(int **graph, size_t count_v);
+int *find_path();
+int bfs(int **graph, size_t count_v, int *distance, int *queue);
+int *dinic(int **graph, size_t count_v);
 void print_arr(int *arr, size_t size);
 
 #endif

@@ -18,7 +18,7 @@ SRC_DIR_OUTPUT = output/
 
 SRC_MAIN = lemin.c
 SRC_PARSE_FILES =
-SRC_LOGIC_FILES = bfs.c
+SRC_LOGIC_FILES = bfs.c dinic.c
 SRC_OUTPUT_FILES =
 
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))
