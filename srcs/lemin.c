@@ -12,6 +12,19 @@ void print_arr(int *arr, size_t size)
 	ft_printf("\n");
 }
 
+void print_path(int *arr)
+{
+	int v;
+	size_t i = 0;
+
+	ft_printf("Path\n");
+	while ((v = arr[i]) != -1) {
+		ft_printf("%d - ", v);
+		i++;
+	}
+	ft_printf("\n");
+}
+
 void print_graph(int **graph, size_t size)
 {
 	size_t i = 0;
@@ -54,8 +67,8 @@ int	main(void)
 	graph[6][0] = 7;
 	print_graph(graph, count_v);
 
-	int *distance = dinic(graph, count_v);
-	print_arr(distance, count_v);
+	int *path = dinic(graph, count_v);
+	print_path(path);
 
 	return (0);
 }
