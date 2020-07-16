@@ -25,20 +25,24 @@ int *dinic(int **graph, size_t count_v)
 	i = 0;
 
 	/**Добавляем кратчайший путь в paths[0]*/
-	bfs(graph, count_v, distance, queue, prev);
-	while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
-	{
+	//while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
+	//{
+		bfs(graph, count_v, distance, queue, prev);
 		ft_printf("SEARCH\n");
 		// заполняем массив из номер первого неудалённого ребра, идущего из u НУЛЯМИ
-		while (!find_path(0, end, graph, distance, visited, prev)) // ищем блокирующие пути
+		//find_path(0, end, graph, distance, visited, prev, 0);
+		while (find_path(0, end, graph, distance, visited, prev, 0)) // ищем блокирующие пути
 		{
 			ft_printf("FIND\n");
+			FLAG = 0;// !!!!!!!!!!!!!! COSTIL'
 			//строим путь по prev
 			print_path(recover_path(end, prev));
 			ft_memset(prev, 0, count_v);
+
+			//find_path(0, end, graph, distance, visited, prev, 0);
 		}
-	}
-	bfs(graph, count_v, distance, queue, prev);
+		ft_memset(distance, 0, count_v);
+	//}
 /*	free(queue);
 	free(prev);*/
 	return (recover_path(end, prev));

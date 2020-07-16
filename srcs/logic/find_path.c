@@ -21,22 +21,27 @@ int *dfs(size_t start, int *adjacent_v, char *visited, int *prev, size_t count_v
 
 
 //ptr-available - указатель на первую неудалённую смежную вершину (неудалённое ребро)
-int *find_path(int start, int end, int **graph, int *distance, char *visited, int *prev)
+int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev, int flag)
 {
 	int u;
 	int i = 0;
 
-	if (start == end)
-		return (prev);
-	while (((u = graph[start][i]) != 0) && (visited[u] == '\0'))
+	if (start == end) {
+		flag = 1; //КОСТЫЛЬтб
+		return (1);
+	}
+
+	while ((u = graph[start][i]) != 0)
 	{
-		if (distance[u] == distance[start] + 1) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
+		if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 		{
 			visited[start] = '1'; // Отмечаем, что посетили эту вершину
-			graph[start][0] = 0;
+			if (start)
+				graph[start][0] = 0;
+
 			prev[u] = start;
-			find_path(u, end, graph, distance, visited, prev);
-			//return (0);
+			find_path(u, end, graph, distance, visited, prev, 0);
+			return (1);
 		}
 		i++;
 	}
