@@ -6,7 +6,7 @@ int bfs(int **graph, size_t count_v, int *distance, int *queue, int *prev)
 	int v;
 	int head, end;
 
-	ft_printf("BFS first distance: %d\n", distance[count_v - 1]);
+	ft_printf("\nBFS first distance: %d\n", distance[count_v - 1]);
 	head = 0; // индекс начала очереди
 	queue[0] = 0; // закидываем в очередь вершину s
 	end = 1; // индекс конца очереди

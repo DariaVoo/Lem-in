@@ -31,14 +31,23 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 	{
 		if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 		{
-			visited[start] = '1'; // Отмечаем, что посетили эту вершину
-			if (start)
-				graph[start][0] = 0;
-
 			prev[u] = start;
-			return (find_path(u, end, graph, distance, visited, prev));
+			if (find_path(u, end, graph, distance, visited, prev))
+			{
+				visited[start] = '1'; // Отмечаем, что посетили эту вершину
+				if (start)
+					graph[start][0] = 0;
+				return (1);
+			}
 		}
 		i++;
 	}
 	return (0);
 }
+/*if (find_path(u, end, graph, distance, visited, prev))
+			{
+				visited[start] = '1'; // Отмечаем, что посетили эту вершину
+				if (start)
+					graph[start][0] = 0;
+				return (1);
+			}*/

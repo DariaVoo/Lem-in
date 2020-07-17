@@ -8,7 +8,7 @@ int *recover_path(size_t end, int *prev)
 
 	i = 0;
 	current = (int)end;
-	if (!(path = (int *)malloc(sizeof(int) * (int)(end / 2)))) // непонятно сколько памяти выделять
+	if (!(path = (int *)malloc(sizeof(int) * (int)(end)))) // непонятно сколько памяти выделять
 		return (0);
 	while (current)
 	{
