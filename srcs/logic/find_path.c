@@ -44,6 +44,7 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 	}
 	return (0);
 }
+
 /*if (find_path(u, end, graph, distance, visited, prev))
 			{
 				visited[start] = '1'; // Отмечаем, что посетили эту вершину

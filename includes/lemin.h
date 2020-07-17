@@ -5,12 +5,12 @@
 # include <stdlib.h>
 # include "libftprintf.h"
 
-/*typedef struct		s_que
+typedef struct		s_path
 {
-	int				vertex;
-	struct s_que	*next;
-	struct s_que	*prev;
-}					t_que;*/
+	int	length;
+	int	*path;
+	struct s_path *next;
+}					t_path;
 
 
 void print_graph(int **graph, size_t size);
