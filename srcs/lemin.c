@@ -29,7 +29,7 @@ void print_graph(int **graph, size_t size)
 {
 	size_t i = 0;
 	size_t j = 0;
-	ft_printf("size %d\n", size);
+	ft_printf("Граф с количеством вершин %d\n", size);
 	ft_printf("вершина: смежные вершины\n");
 	while (i < size) {
 		j = 0;
@@ -77,10 +77,10 @@ int	main(void)
 
 	graph[8][0] = 10; // в t
 	graph[7][0] = 10;
-	print_graph(graph, count_v);
+	//print_graph(graph, count_v);
 
 	int *path = dinic(graph, count_v);
-	print_path(path);
+	//print_path(path);
 
 	return (0);
 }

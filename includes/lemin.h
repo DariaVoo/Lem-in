@@ -12,6 +12,7 @@
 	struct s_que	*prev;
 }					t_que;*/
 
+void print_graph(int **graph, size_t size);
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev);
 void print_path(int *arr);
 int *recover_path(size_t end, int *prev);

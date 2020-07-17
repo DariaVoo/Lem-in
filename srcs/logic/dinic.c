@@ -1,5 +1,14 @@
 #include "lemin.h"
 
+void ft_zero(int *arr, size_t size){
+	int i = 0;
+
+	while (i < size){
+		arr[i] = 0;
+		i++;
+	}
+}
+
 // Возвращает массив из путей
 int *dinic(int **graph, size_t count_v)
 {
@@ -22,27 +31,29 @@ int *dinic(int **graph, size_t count_v)
 		return (NULL);
 	ft_memset(queue, 0, count_v);
 	ft_memset(prev, 0, count_v);
+
 	i = 0;
 
 	/**Добавляем кратчайший путь в paths[0]*/
-	//while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
-	//{
-		bfs(graph, count_v, distance, queue, prev);
+	while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
+	{
 		ft_printf("SEARCH\n");
-		// заполняем массив из номер первого неудалённого ребра, идущего из u НУЛЯМИ
-		//find_path(0, end, graph, distance, visited, prev, 0);
 		while (find_path(0, end, graph, distance, visited, prev)) // ищем блокирующие пути
 		{
 			//строим путь по prev
 			print_path(recover_path(end, prev));
-			ft_memset(prev, 0, count_v);
+			ft_memset(prev, 0, count_v); // !!!!! Не работает !!!!!
 
+/*			ft_printf("zero path:\n");
+			print_arr(prev, count_v);*/
 		}
-		ft_memset(distance, 0, count_v);
-	//}
+		ft_zero(distance, count_v); //почему работает только так?????
+		ft_printf("distance:\t");
+		print_arr(distance, count_v);
+	}
 /*	free(queue);
 	free(prev);*/
-	return (recover_path(end, prev));
+	return (path);
 	//return (paths);
 }
 

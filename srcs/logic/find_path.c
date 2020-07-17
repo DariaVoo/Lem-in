@@ -19,8 +19,6 @@ int *dfs(size_t start, int *adjacent_v, char *visited, int *prev, size_t count_v
 	return (prev);// массив предыдущих вершин - перевернутый блокирющий путь
 }
 
-
-//ptr-available - указатель на первую неудалённую смежную вершину (неудалённое ребро)
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev)
 {
 	int u;
