@@ -13,14 +13,13 @@ typedef struct		s_path
 }					t_path;
 
 
-int find_pathh(int start, int end, int **graph, int *distance, char *visited, int *stack);
+int find_path(int start, int end, int **graph, int *distance, char *visited, int *stack);
 int *set_path(int len, int *stack_path, int **graph);
 
 void print_graph(int **graph, size_t size);
-int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev);
 void print_path(int *arr);
 int *recover_path(size_t end, int *prev);
-int bfs(int **graph, size_t count_v, int *distance, int *queue, int *prev);
+int bfs(int **graph, size_t count_v, int *distance, int *queue);
 int *dinic(int **graph, size_t count_v);
 void print_arr(int *arr, size_t size);
 

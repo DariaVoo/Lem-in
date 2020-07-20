@@ -1,5 +1,5 @@
 #include "lemin.h"
-
+// Не нужно
 int *dfs(size_t start, int *adjacent_v, char *visited, int *prev, size_t count_v) {
 	int u;
 	int i;
@@ -18,8 +18,8 @@ int *dfs(size_t start, int *adjacent_v, char *visited, int *prev, size_t count_v
 	}
 	return (prev);// массив предыдущих вершин - перевернутый блокирющий путь
 }
-
-int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev)
+// Не нужно
+int find_path_bfs_recursive(int start, int end, int **graph, int *distance, char *visited, int *prev)
 {
 	int u;
 	int i = 0;
@@ -32,7 +32,7 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 		if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 		{
 			prev[u] = start;
-			if (find_path(u, end, graph, distance, visited, prev))
+			if (find_path_bfs_recursive(u, end, graph, distance, visited, prev))
 			{
 				visited[start] = '1'; // Отмечаем, что посетили эту вершину
 				if (start)
@@ -45,7 +45,8 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 	return (0);
 }
 
-int find_pathh(int start, int end, int **graph, int *distance, char *visited, int *stack)
+
+int find_path(int start, int end, int **graph, int *distance, char *visited, int *stack)
 {
 	int u;
 	int i = 0;

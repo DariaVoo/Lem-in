@@ -1,6 +1,6 @@
 #include "lemin.h"
 
-int bfs(int **graph, size_t count_v, int *distance, int *queue, int *prev)
+int bfs(int **graph, size_t count_v, int *distance, int *queue)
 {
 	int j; // индекс для второй стороны ребра (u, v)
 	int v;
@@ -21,7 +21,6 @@ int bfs(int **graph, size_t count_v, int *distance, int *queue, int *prev)
 			if (distance[v] == 0) // расстояние до этой вершины ещё не вычислено
 			{
 				distance[v] = distance[u] + 1;
-				prev[v] = u;
 				queue[end] = v; // добавляем вершину в очередь
 				end++;
 			}

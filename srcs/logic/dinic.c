@@ -18,7 +18,6 @@ int *dinic(int **graph, size_t count_v)
 	int **paths; // блокирующие пути
 	int i; // счётчик для блокирующих путей
 	int *path; // найденный блокирующий путь
-	int *prev; // для восстановления блокирующего пути УДАЛИТЬ
 	int end = count_v - 1;
 
 
@@ -26,27 +25,23 @@ int *dinic(int **graph, size_t count_v)
 		return (NULL);
 	if (!(distance = (int *)malloc(sizeof(int) * count_v)))
 		return (NULL);
-	if (!(prev = (int *)malloc(sizeof(int) * count_v)))
-		return (NULL);
 	if (!(queue = (int *)malloc(sizeof(int) * count_v)))
 		return (NULL);
 	ft_memset(queue, 0, count_v);
-	ft_memset(prev, 0, count_v);
 
 	i = 0;
 
 
 	int len;
 	/**Добавляем кратчайший путь в paths[0]*/
-	while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
+	while (bfs(graph, count_v, distance, queue)) // достижима ли t из s
 	{
 		ft_printf("SEARCH\n");
 		ft_zero(queue, count_v);
-		while ((len = find_pathh(0, end, graph, distance, visited, queue))) // ищем блокирующие пути
+		while ((len = find_path(0, end, graph, distance, visited, queue))) // ищем блокирующие пути
 		{
-			//строим путь по prev
+			//строим путь
 			ft_printf("length path: %d\n", len);
-			//print_path(queue);
 			print_path(set_path(len, queue, graph));
 			ft_zero(queue, count_v);
 
