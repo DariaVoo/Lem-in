@@ -46,7 +46,7 @@ int *dinic(int **graph, size_t count_v)
 		{
 			//строим путь по prev
 			ft_printf("length path: %d\n", len);
-			print_path(set_path(len, queue));
+			print_path(set_path(len, queue, graph));
 			ft_zero(queue, count_v);
 
 

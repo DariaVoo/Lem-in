@@ -23,7 +23,7 @@ int *recover_path(size_t end, int *prev)
 	return (path);
 }
 
-int *set_path(int len, int *stack_path)
+int *set_path(int len, int *stack_path, int **graph)
 {
 	int		i;
 	int		*path;
@@ -34,6 +34,7 @@ int *set_path(int len, int *stack_path)
 	while (i < len)
 	{
 		path[i] = stack_path[i];
+		graph[stack_path[i]][0] = 0;
 		i++;
 	}
 //	path[i] = 0;
