@@ -12,6 +12,9 @@ typedef struct		s_path
 	struct s_path *next;
 }					t_path;
 
+void	add_path(t_path **alst, t_path *neww);
+t_path *new_path(int *path, int length_path);
+
 int *set_path(int len, int *stack_path, int **graph);
 
 t_path * dinic(int **graph, size_t count_v);
