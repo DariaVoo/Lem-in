@@ -86,7 +86,7 @@ int	main(void)
 	graph[10][0] = end;
 	//print_graph(graph, count_v);
 
-	int *path = dinic(graph, count_v);
+	t_path *paths = dinic(graph, count_v);
 	//print_path(path);
 
 	return (0);
