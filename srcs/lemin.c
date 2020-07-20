@@ -74,7 +74,7 @@ int	main(void)
 	graph[6][0] = 5;
 	graph[6][1] = 9;
 	graph[9][0] = 6;
-//	graph[9][1] = 10;
+	graph[9][1] = 10;//
 
 	graph[9][0] = 7;
 	graph[7][1] = 5;
@@ -83,7 +83,7 @@ int	main(void)
 
 	graph[8][0] = end; // в t
 	graph[7][0] = end;
-//	graph[10][0] = end;
+	graph[10][0] = end;
 	//print_graph(graph, count_v);
 
 	int *path = dinic(graph, count_v);
