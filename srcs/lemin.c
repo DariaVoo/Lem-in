@@ -67,9 +67,6 @@ int	main(void)
 //	graph[2][1] = 5;
 //	graph[3][0] = 6;
 
-	graph[7][3] = 9;
-	graph[9][0] = 7;
-
 	graph[4][0] = 8;
 	graph[5][0] = 8;
 	graph[5][1] = 7;
@@ -79,8 +76,10 @@ int	main(void)
 	graph[9][0] = 6;
 //	graph[9][1] = 10;
 
+	graph[9][0] = 7;
 	graph[7][1] = 5;
 	graph[7][2] = 8;
+	graph[7][3] = 9;
 
 	graph[8][0] = end; // в t
 	graph[7][0] = end;

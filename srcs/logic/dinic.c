@@ -41,13 +41,17 @@ int *dinic(int **graph, size_t count_v)
 	while (bfs(graph, count_v, distance, queue, prev)) // достижима ли t из s
 	{
 		ft_printf("SEARCH\n");
-		while ((len = find_path(0, end, graph, distance, visited, prev))) // ищем блокирующие пути
+		ft_zero(queue, count_v);
+		while ((len = find_pathh(0, end, graph, distance, visited, prev, queue))) // ищем блокирующие пути
 		{
 			//строим путь по prev
 			ft_printf("length path: %d\n", len);
-			print_path(recover_path(end, prev));
-			ft_zero(prev, count_v);
+			print_path(set_path(len, queue));
+			ft_zero(queue, count_v);
 
+
+
+//			print_path(recover_path(end, prev, NULL));
 			//ft_memset(prev, 0, count_v); // !!!!! Не работает !!!!!
 /*			ft_printf("zero path:\n");
 			print_arr(prev, count_v);*/

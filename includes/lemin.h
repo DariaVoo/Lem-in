@@ -13,6 +13,9 @@ typedef struct		s_path
 }					t_path;
 
 
+int find_pathh(int start, int end, int **graph, int *distance, char *visited, int *prev, int *stack);
+int *set_path(int len, int *stack_path);
+
 void print_graph(int **graph, size_t size);
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *prev);
 void print_path(int *arr);

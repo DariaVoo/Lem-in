@@ -45,10 +45,39 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 	return (0);
 }
 
-/*if (find_path(u, end, graph, distance, visited, prev))
+int find_pathh(int start, int end, int **graph, int *distance, char *visited, int *prev, int *stack)
+{
+	int u;
+	int i = 0;
+	int top = 0; // указатель на вершину стека
+
+	while (top != -1)
+	{
+		while ((u = graph[start][i]) != 0)
+		{
+			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 			{
+				prev[u] = start;
+				stack[top++] = u; // кладём на стек
 				visited[start] = '1'; // Отмечаем, что посетили эту вершину
-				if (start)
-					graph[start][0] = 0;
-				return (1);
-			}*/
+//				if (start)
+//					graph[start][0] = 0;
+				start = u;
+				i = 0;
+			} else
+				i++;
+
+			if (start == end)
+				return (top);
+		}
+		if (!start) //  если мы в s, тогда путей нет
+			return (0);
+		if (!u)
+		{
+			top--; // убираем со стека
+			start = stack[top];
+			i = 0;
+		}
+	}
+	return (0);
+}
