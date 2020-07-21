@@ -10,18 +10,14 @@ typedef struct		s_path
 	int	*path;
 	int	length;
 	int prior;
-	int count_ant;
+	int *ants; // муравьи перемещающиеся по пути
+	int last_ant; // индекс последнего муравья на этом пути
 	struct s_path *next;
 }					t_path;
 
-typedef struct		s_ant
-{
-	int	*path;
-	int	index_path;
-	struct s_path *next;
-}					t_ant;
+void ft_zero(int *arr, size_t size);
 
-void send_ants(int **graph, int count_ants, t_path **paths);
+void send_ants(int **graph, int count_ants, t_path *paths);
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);

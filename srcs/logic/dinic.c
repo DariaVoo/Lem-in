@@ -1,6 +1,7 @@
 #include "lemin.h"
 
-void ft_zero(int *arr, size_t size){
+void ft_zero(int *arr, size_t size)
+{
 	int i = 0;
 
 	while (i < size){

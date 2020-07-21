@@ -1,9 +1,8 @@
 #include "lemin.h"
 
-int get_prior(t_path *paths, t_path *current, int curr_len)
+static int	calculate_prior(t_path *paths, t_path *current, int curr_len)
 {
-	int prior;
-	t_path *path;
+	int		prior;
 
 	prior = 0;
 	while (paths != current)
@@ -14,14 +13,14 @@ int get_prior(t_path *paths, t_path *current, int curr_len)
 	return (prior);
 }
 
-void set_prior(t_path *paths)
+void		set_prior(t_path *paths)
 {
-	t_path *current;
+	t_path	*current;
 
 	current = paths;
 	while (current)
 	{
-		current = paths;
-		current->prior = get_prior(paths, current, current->length);
+		current->prior = calculate_prior(paths, current, current->length);
+		current = current->next;
 	}
 }
