@@ -8,11 +8,12 @@
 typedef struct		s_path
 {
 	int	length;
+	int prior;
 	int	*path;
 	struct s_path *next;
 }					t_path;
 
-void send_aints(int **graph, int count_aints, t_path paths);
+void send_ants(int **graph, int count_ants, t_path **paths);
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
