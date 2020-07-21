@@ -7,17 +7,26 @@
 
 typedef struct		s_path
 {
+	int	*path;
 	int	length;
 	int prior;
-	int	*path;
+	int count_ant;
 	struct s_path *next;
 }					t_path;
+
+typedef struct		s_ant
+{
+	int	*path;
+	int	index_path;
+	struct s_path *next;
+}					t_ant;
 
 void send_ants(int **graph, int count_ants, t_path **paths);
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
 void		reverse_paths(t_path **begin_list);
+void set_prior(t_path *paths);
 
 int *set_path(int len, int *stack_path, int **graph);
 
