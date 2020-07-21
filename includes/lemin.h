@@ -12,8 +12,11 @@ typedef struct		s_path
 	struct s_path *next;
 }					t_path;
 
+void send_aints(int **graph, int count_aints, t_path paths);
+
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
+void		reverse_paths(t_path **begin_list);
 
 int *set_path(int len, int *stack_path, int **graph);
 

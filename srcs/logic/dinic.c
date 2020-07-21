@@ -19,7 +19,7 @@ t_path * dinic(int **graph, size_t count_v)
 	int len; // длина найденного блокирующего пути
 	int end = count_v - 1;
 
-
+	paths = NULL;
 	if (!(visited = ft_strnew(count_v)))
 		return (NULL);
 	if (!(distance = (int *)malloc(sizeof(int) * count_v)))
@@ -47,6 +47,7 @@ t_path * dinic(int **graph, size_t count_v)
 		visited = ft_memset(visited, '\0', count_v);
 	}
 	free(queue_stack);
+	reverse_paths(&paths);
 	return (paths);
 }
 
