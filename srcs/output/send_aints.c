@@ -7,7 +7,7 @@ int set_ant(t_path *paths, int ant)
 
 	finish = 0;
 	i = paths->last_ant + 1;
-	if (i == paths->length) // сейчас кто-то перейдёт на финиш
+	if (i == paths->length - 1) // сейчас кто-то перейдёт на финиш
 		finish = 1;
 	while (i)
 	{
@@ -21,32 +21,6 @@ int set_ant(t_path *paths, int ant)
 	return (finish);
 }
 
-int move_ants(t_path *paths)
-{//TODO исправить работу ПЕРЕПИСАТЬ
-	t_path *current;
-	int i;
-	int finish;
-
-	finish = 0;
-	current = paths;
-	while (current)
-	{
-		i = current->last_ant;
-		if (i == 1)
-			return (finish);
-		//i++;//wtf
-		if (i == current->length) // сейчас кто-то перейдёт на финиш
-			finish += 1;
-		while (current->ants[i] != 0)
-		{
-			current->ants[i] = current->ants[i - 1];
-			ft_printf("L%d-%d ", current->ants[i], current->path[i]);
-			i--;
-		}
-		current = current->next;
-	}
-	return (finish);
-}
 
 void send_ants(int **graph, int count_ants, t_path *paths)
 {
@@ -62,19 +36,25 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 		current = paths;
 		while (current)
 		{
-			if (count_ants < current->prior) // если не выгодно пускать муравья по этому пути
+			if (count_ants - ant < current->prior) // если не выгодно пускать муравья по этому пути
 				break ;
+
 			//пускаем муравья по этому пути
 			at_finish += set_ant(current, ant);
 			current = current->next;
 			ant++;
 		}
 		ft_printf("\n");
-		ant++;
 	}
+	ft_printf("NNNNNNN\n");
 	while (at_finish != count_ants)
 	{
-		at_finish += move_ants(paths);
+		current = paths;
+		while (current)
+		{
+			at_finish += move_ants(current);
+			current = current->next;
+		}
 		ft_printf("\n");
 	}
 }

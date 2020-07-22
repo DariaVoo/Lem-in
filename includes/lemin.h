@@ -18,6 +18,8 @@ typedef struct		s_path
 void ft_zero(int *arr, size_t size);
 
 void send_ants(int **graph, int count_ants, t_path *paths);
+int move_ants(t_path *path);
+
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
