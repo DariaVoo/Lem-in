@@ -12,11 +12,13 @@ int set_ant(t_path *paths, int ant)
 	while (i)
 	{
 		paths->ants[i] = paths->ants[i - 1];
-		ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
+		if (i != paths->length)
+			ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
 		i--;
 	}
 	paths->ants[i] = ant;
-	paths->last_ant++;
+	if (!finish)
+		paths->last_ant++;
 	ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
 	return (finish);
 }
@@ -46,18 +48,20 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 		}
 		ft_printf("\n");
 	}
-	ft_printf("NNNNNNN\n");
+//	ft_printf("NNNNNNN\n");
 	while (at_finish < count_ants)
 	{
 		current = paths;
 		while (current)
 		{
-			ft_printf("\t\tANTS: ");
-			print_path(current->ants, current->length);
+//			ft_printf("\tANTS: ");
+//			print_path(current->ants, current->length);
 
 			at_finish += move_ants(current);
 			current = current->next;
+//			ft_printf("\tAt finish: %d\t\t\t", at_finish);
 		}
 		ft_printf("\n");
 	}
+//	ft_printf("\nAt finish: %d\n", at_finish);
 }

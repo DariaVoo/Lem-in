@@ -33,14 +33,14 @@ t_path * dinic(int **graph, size_t count_v)
 	/** Добавляем кратчайший путь в paths[0]*/
 	while (bfs(graph, count_v, distance, queue_stack)) // достижима ли t из s
 	{
-		ft_printf("SEARCH\n");
+//		ft_printf("SEARCH\n");
 		ft_zero(queue_stack, count_v);
 		while ((len = find_path(0, end, graph, distance, visited, queue_stack))) // ищем блокирующие пути
 		{
 			//строим путь
-			ft_printf("length path: %d\n", len);
+//			ft_printf("length path: %d\n", len);
 			add_path(&paths, new_path(set_path(len, queue_stack, graph, end), len));
-			print_path(set_path(len, queue_stack, graph, end), len);
+//			print_path(set_path(len, queue_stack, graph, end), len);
 			ft_zero(queue_stack, count_v);
 
 		}
