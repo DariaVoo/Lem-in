@@ -47,11 +47,14 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 		ft_printf("\n");
 	}
 	ft_printf("NNNNNNN\n");
-	while (at_finish != count_ants)
+	while (at_finish < count_ants)
 	{
 		current = paths;
 		while (current)
 		{
+			ft_printf("\t\tANTS: ");
+			print_path(current->ants, current->length);
+
 			at_finish += move_ants(current);
 			current = current->next;
 		}

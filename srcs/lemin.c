@@ -21,7 +21,7 @@ void print_path(int *arr, int len)
 		ft_printf("%d - ", arr[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf("\t");
 }
 
 void print_paths(t_path *paths)
