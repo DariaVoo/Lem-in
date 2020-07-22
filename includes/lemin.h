@@ -24,13 +24,13 @@ t_path *new_path(int *path, int length_path);
 void		reverse_paths(t_path **begin_list);
 void set_prior(t_path *paths);
 
-int *set_path(int len, int *stack_path, int **graph);
+int *set_path(int len, int *stack_path, int **graph, int end);
 
 t_path * dinic(int **graph, size_t count_v);
 int bfs(int **graph, size_t count_v, int *distance, int *queue);
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *stack);
 
-void print_path(int *arr);
+void print_path(int *arr, int len);
 void print_arr(int *arr, size_t size);
 void print_graph(int **graph, size_t size);
 

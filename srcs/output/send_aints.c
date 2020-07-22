@@ -30,12 +30,12 @@ int move_ants(t_path *paths)
 
 	finish = 0;
 	current = paths;
-	while (current) // неправильное условие мб
+	while (current)
 	{
 		i = current->last_ant;
 		if (i == 1)
 			return (finish);
-		i++;//wtf
+		//i++;//wtf
 		if (i == current->length) // сейчас кто-то перейдёт на финиш
 			finish += 1;
 		while (current->ants[i] != 0)

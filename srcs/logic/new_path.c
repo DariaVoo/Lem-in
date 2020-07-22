@@ -13,7 +13,7 @@ t_path *new_path(int *path, int length_path)
 	node->path = path;
 	node->length = length_path;
 	node->prior = 0;
-	node->last_ant = 0;
+	node->last_ant = -1;
 	node->next = NULL;
 	return (node);
 }

@@ -1,21 +1,25 @@
 #include "lemin.h"
 
-int *set_path(int len, int *stack_path, int **graph)
+int *set_path(int len, int *stack_path, int **graph, int end)
 {
-	int		i;
-	int		*path;
+	int	i;
+	int j;
+	int	*path;
 
-	i = 1;
+	i = 0;
+	j = 1;
 	if (!(path = (int *)malloc(sizeof(int) * len)))
 		return (0);
-	path[0] = 0;
-	while (i < len)
+	//path[0] = 0;
+	while (j < len)
 	{
-		path[i] = stack_path[i];
-		graph[stack_path[i]][0] = 0;
+		path[i] = stack_path[j];
+		graph[stack_path[j]][0] = 0;
 		i++;
+		j++;
 	}
-	path[i] = -1;
+	path[i] = end;
+	//path[i] = -1;
 	return (path);
 }
 

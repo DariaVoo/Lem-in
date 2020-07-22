@@ -12,14 +12,13 @@ void print_arr(int *arr, size_t size)
 	ft_printf("\n");
 }
 
-void print_path(int *arr)
+void print_path(int *arr, int len)
 {
-	int v;
 	size_t i = 0;
 
 	//ft_printf("Path:\n");
-	while ((v = arr[i]) != -1) {
-		ft_printf("%d - ", v);
+	while (i < len) {
+		ft_printf("%d - ", arr[i]);
 		i++;
 	}
 	ft_printf("\n");
@@ -30,7 +29,7 @@ void print_paths(t_path *paths)
 	ft_printf("PATHS:\n");
 	while (paths) {
 		ft_printf("path:\t");
-		print_path(paths->path);
+		print_path(paths->path, paths->length);
 		paths = paths->next;
 	}
 	ft_printf("\n");
