@@ -6,11 +6,10 @@ int set_ant(t_path *paths, int ant)
 	int finish;
 
 	finish = 0;
-	i = paths->last_ant;
+	i = paths->last_ant + 1;
 	if (i == paths->length) // сейчас кто-то перейдёт на финиш
 		finish = 1;
-	i++;
-	while (i != 1)
+	while (i)
 	{
 		paths->ants[i] = paths->ants[i - 1];
 		ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
