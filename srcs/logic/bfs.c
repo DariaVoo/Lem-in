@@ -4,16 +4,16 @@ int bfs(int **graph, size_t count_v, int *distance, int *queue)
 {
 	int j; // индекс для второй стороны ребра (u, v)
 	int v;
+	int u;
 	int head, end;
 
 //	ft_printf("\nBFS first distance: %d\n", distance[count_v - 1]);
 	head = 0; // индекс начала очереди
 	queue[0] = 0; // закидываем в очередь вершину s
 	end = 1; // индекс конца очереди
-
 	while (head < count_v)
 	{
-		int u = queue[head]; // запоминаем какую вершину мы будем рассматривать
+		u = queue[head]; // запоминаем какую вершину мы будем рассматривать
 		head++; // "удаляем" вершину из очереди
 		j = 0;
 		while ((v = graph[u][j]) != 0) // смотрим все рёбра этой вершины

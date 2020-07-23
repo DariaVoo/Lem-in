@@ -60,9 +60,10 @@ int	main(void)
 	size_t count_v = 12;
 	int end = 11;
 	int count_ants = 10;
+	int count_edges = 5;
 	t_path *paths;
 
-	graph = new_table(count_v, 5);
+	graph = new_table(count_v, count_edges);
 	/** заполняем массив смежности
 	 * вершина: смежные вершины*/
 	graph[0][0] = 1; //  из вершины s

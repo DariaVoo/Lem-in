@@ -34,5 +34,4 @@ int find_path(int start, int end, int **graph, int *distance, char *visited, int
 			i = 0;
 		}
 	}
-	return (0);
 }
