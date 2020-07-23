@@ -59,7 +59,7 @@ int	main(void)
 	int **graph;
 	size_t count_v = 12;
 	int end = 11;
-	int count_ants = 10000;
+	int count_ants = 10;
 
 	graph = new_table(count_v, 5);
 	/** заполняем массив смежности
@@ -98,8 +98,11 @@ int	main(void)
 	//print_graph(graph, count_v);
 
 	t_path *paths = dinic(graph, count_v);
-//	print_paths(paths);
-	send_ants(graph, count_ants, paths);
+	if (!paths)
+		ft_printf("No Path!\n");
+	else
+		send_ants(graph, count_ants, paths);
 
+	//	print_paths(paths);
 	return (0);
 }

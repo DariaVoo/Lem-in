@@ -19,7 +19,12 @@ void ft_zero(int *arr, size_t size);
 
 void send_ants(int **graph, int count_ants, t_path *paths);
 int move_ants(t_path *path);
+int set_ant(t_path *paths, int ant);
 
+// check no path +
+// free_path
+// norme
+// valgrind
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
@@ -28,7 +33,7 @@ void set_prior(t_path *paths);
 
 int *set_path(int len, int *stack_path, int **graph, int end);
 
-t_path * dinic(int **graph, size_t count_v);
+t_path *dinic(int **graph, size_t count_v);
 int bfs(int **graph, size_t count_v, int *distance, int *queue);
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *stack);
 
