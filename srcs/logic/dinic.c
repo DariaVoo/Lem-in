@@ -47,8 +47,10 @@ t_path * dinic(int **graph, size_t count_v)
 		ft_zero(distance, count_v);
 		visited = ft_memset(visited, '\0', count_v);
 	}
-	free(queue_stack);
 	reverse_paths(&paths);
+	free(visited);
+	free(distance);
+	free(queue_stack);
 	return (paths);
 }
 

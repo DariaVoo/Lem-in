@@ -8,7 +8,7 @@ t_path *new_path(int *path, int length_path)
 	if (!node)
 		return (NULL);
 	if (!(node->ants = (int *)malloc(sizeof(int) * length_path)))
-		return (0);
+		return (NULL);
 	ft_zero(node->ants, length_path);
 	node->path = path;
 	node->length = length_path;

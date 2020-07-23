@@ -24,10 +24,11 @@ int set_ant(t_path *paths, int ant);
 // check no path +
 // free_path
 // norme
-// valgrind
+
 
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
+void free_paths(t_path **paths);
 void		reverse_paths(t_path **begin_list);
 void set_prior(t_path *paths);
 

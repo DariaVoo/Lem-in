@@ -12,12 +12,15 @@ int move_ants(t_path *path)
 	if (j == -1 || path->ants[j] == 0)
 		return (0);
 	if (i == path->length) // сейчас кто-то перейдёт на финиш
+	{
+		i--;
+		j--;
 		finish = 1;
-	while (path->ants[j] != 0 && j != -1)
+	}
+	while (j != -1 && path->ants[j] != 0)
 	{
 		path->ants[i] = path->ants[j];
-		if (i != path->length)
-			ft_printf("L%d-%d ", path->ants[i], path->path[i]);
+		ft_printf("L%d-%d ", path->ants[i], path->path[i]);
 		i--;
 		j--;
 	}
@@ -28,13 +31,17 @@ int move_ants(t_path *path)
 }
 
 
+
+
+
+
 int move_antsssssss(t_path *path)
 {//Это тоже самое, только с одной переменной, но вычисляться из-за этого будет дольше
 	int i;
 	int finish;
 
 	finish = 0;
-	i = path->last_ant;
+	i = path->last_ant + 1;
 	if (i == -1 || path->ants[i] == 0)
 		return (0);
 	if (i + 1 == path->length)
