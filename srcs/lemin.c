@@ -14,7 +14,7 @@ void print_arr(int *arr, size_t size)
 
 void print_path(int *arr, int len)
 {
-	size_t i = 0;
+	int i = 0;
 
 	//ft_printf("Path:\n");
 	while (i < len) {
@@ -107,6 +107,5 @@ int	main(void)
 
 	free_table((void **)graph, count_ants);
 	free_paths(&paths);
-	//	print_paths(paths);
 	return (0);
 }

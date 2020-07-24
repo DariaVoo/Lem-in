@@ -32,9 +32,6 @@ int move_ants(t_path *path)
 
 
 
-
-
-
 int move_antsssssss(t_path *path)
 {//Это тоже самое, только с одной переменной, но вычисляться из-за этого будет дольше
 	int i;

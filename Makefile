@@ -1,15 +1,15 @@
 NAME = lem-in
-# CFLAGS := -Wall -Wextra -Werror
+#CFLAGS := -O2 -Wall -Wextra -Werror
 
 LIBFT_DIR = ft_printf/
 LIBFT = $(LIBFT_DIR)libftprintf.a
-LIBFT_HEADERS = $(LIBFT_DIR)includes/
+LIBFT_HEADERS_DIR = $(LIBFT_DIR)includes/
 LIB_FLAG := -L./$(LIBFT_DIR) -lftprintf
 
 HEADERS_DIR = includes/
 HEADERS_LST = lemin.h
 HEADERS = $(addprefix $(HEADERS_DIR), $(HEADERS_LST))
-INCLUDES := -I $(HEADERS_DIR) -I $(LIBFT_HEADERS)
+INCLUDES := -I $(HEADERS_DIR) -I $(LIBFT_HEADERS_DIR)
 
 SRC_DIR = srcs/
 SRC_DIR_PARSE = parse/
@@ -33,13 +33,13 @@ OBJ_DIRS = $(addprefix $(OBJ_DIR), $(SRC_DIR_PARSE)) $(addprefix $(OBJ_DIR), $(S
 OBJ_LST = $(patsubst %.c, %.o, $(SRCS_LST))
 OBJ	= $(addprefix $(OBJ_DIR), $(OBJ_LST))
 
-all: $(NAME)
+all: lib $(NAME)
+
+lib:
+	make -sC $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
 	gcc $(CFLAGS) $(OBJ) $(INCLUDES) $(LIB_FLAG) -o $(NAME)
-
-$(LIBFT):
-	make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR) $(OBJ_DIRS)
@@ -58,4 +58,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lib
