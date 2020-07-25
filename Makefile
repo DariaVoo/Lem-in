@@ -1,10 +1,10 @@
 NAME = lem-in
 #CFLAGS := -O2 -Wall -Wextra -Werror
 
-LIBFT_DIR = ft_printf/
-LIBFT = $(LIBFT_DIR)libftprintf.a
+LIBFT_DIR = libft/
+LIBFT = $(LIBFT_DIR)libft.a
 LIBFT_HEADERS_DIR = $(LIBFT_DIR)includes/
-LIB_FLAG := -L./$(LIBFT_DIR) -lftprintf
+LIB_FLAG := -L./$(LIBFT_DIR) -lft
 
 HEADERS_DIR = includes/
 HEADERS_LST = lemin.h
@@ -24,9 +24,9 @@ SRC_OUTPUT_FILES = send_ants.c set_prior.c move_ants.c set_ant.c
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))
 SRC_LOGIC = $(addprefix $(SRC_DIR_LOGIC), $(SRC_LOGIC_FILES))
 SRC_OUTPUT = $(addprefix $(SRC_DIR_OUTPUT), $(SRC_OUTPUT_FILES))
-SRCS = $(addprefix $(SRC_DIR), $(SRCS_LST))
 
 SRCS_LST = $(SRC_MAIN) $(SRC_PARSE) $(SRC_LOGIC) $(SRC_OUTPUT)
+SRCS = $(addprefix $(SRC_DIR), $(SRCS_LST))
 
 OBJ_DIR = objects/
 OBJ_DIRS = $(addprefix $(OBJ_DIR), $(SRC_DIR_PARSE)) $(addprefix $(OBJ_DIR), $(SRC_DIR_LOGIC)) $(addprefix $(OBJ_DIR), $(SRC_DIR_OUTPUT))

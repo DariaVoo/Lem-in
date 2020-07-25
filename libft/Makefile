@@ -5,13 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: snorcros <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/04 15:42:32 by snorcros          #+#    #+#              #
-#    Updated: 2019/10/12 12:54:47 by snorcros         ###   ########.fr        #
+#    Created: 2019/09/04 15:42:32 by snorcros          #+#    #+##   Updated: 2020/07/25 12:22:36 by snorcros         ###   ########lyon.fr   #######.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-SRC = ft_atoi.c		ft_bzero.c		ft_memccpy.c	ft_memchr.c		ft_lstmerge.c\
+CFLAGS := -Wall -Wextra -Werror
+INCLUDES := includes/
+
+HEADERS_LST = colors.h  funfortypes.h libft.h libftprintf.h unixtime.h header_double.h
+HEADERS = $(addprefix $(INCLUDES), $(HEADERS_LST))
+
+# ft
+FT_DIR = ft/
+SRC_FT_LIST = ft_atoi.c		ft_bzero.c		ft_memccpy.c	ft_memchr.c		ft_lstmerge.c\
 	  ft_memcmp.c	ft_memcpy.c		ft_memmove.c 	ft_memset.c		ft_lstremove_if.c\
 	  ft_strlen.c	ft_strcmp.c		ft_isalnum.c	ft_lstqsort.c	ft_lstadd_back.c\
 	  ft_strcpy.c	ft_strncpy.c	ft_strcat.c		ft_strncat.c	ft_lstfind.c\
@@ -29,21 +36,46 @@ SRC = ft_atoi.c		ft_bzero.c		ft_memccpy.c	ft_memchr.c		ft_lstmerge.c\
 	  ft_stradd_front.c ft_stradd_back.c    ft_strreplace.c ft_strcat_front.c ft_strcut.c\
 	  new_table.c
 
-SRC0 = $(patsubst %.c, %.o, $(SRC))
+SRC_FT = $(addprefix $(FT_DIR), $(SRC_FT_LIST))
 
-HEADER = includes
+# ft_printf
+SRC_PRINTF_LIST =	fun_flags.c	fun_length.c length_bonus.c parse.c	placeholder.c	printf.c\
+                    precision.c type_unixtime.c unixtime.c  type_color.c flag_hash.c\
+                    funtypes_ubp.c funtypes_cdx_upx_o.c funtypes_sf_percent.c\
+                    bonus_star.c get_flag_sign.c set_precision_width.c\
+					ft_kek.c ft_double.c ft_longarith.c
+
+PRINTF_DIR = ft_printf/
+SRC_PRINTF = $(addprefix $(PRINTF_DIR), $(SRC_PRINTF_LIST))
+
+# all srcs
+SRC_DIR = srcs/
+SRCS_LIST = $(SRC_FT) $(SRC_PRINTF)
+SRCS = $(addprefix $(SRC_DIR), $(SRCS_LST))
+
+OBJ_DIR = objects/
+OBJ_DIRS = $(addprefix $(OBJ_DIR), $(FT_DIR)) $(addprefix $(OBJ_DIR), $(PRINTF_DIR))
+OBJ_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
+OBJ	= $(addprefix $(OBJ_DIR), $(OBJ_LIST))
 
 all: $(NAME)
 
-$(NAME): $(SRC0)
-	@ar rc $@ $^
+$(NAME): $(OBJ_DIR) $(OBJ)
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
-%.o: %.c $(HEADER)
-	@gcc -Wall -Wextra -Werror -c $< -I $(HEADER)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR) $(OBJ_DIRS)
+
+objects/%.o: srcs/%.c $(HEADERS)
+	gcc $(CFLAGS) -c -I $(INCLUDES) $< -o $@
+
 clean:
-	@rm -f $(SRC0)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME) 
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
