@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_path.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/25 12:37:10 by snorcros          #+#    #+#             */
+/*   Updated: 2020/07/25 12:37:10 by snorcros         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 #include "lemin.h"
 
 int find_path(int start, int end, int **graph, int *distance, char *visited, int *stack)
