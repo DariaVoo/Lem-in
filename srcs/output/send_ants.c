@@ -6,12 +6,12 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:36:42 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:36:42 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 21:05:20 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
 
-void send_ants(int **graph, int count_ants, t_path *paths)
+void send_ants(t_room *graph, int count_ants, t_path *paths)
 {
 	t_path *current;
 	int at_finish;
@@ -20,7 +20,7 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 	ant = 1;
 	at_finish = 0;
 	set_prior(paths); // вычисляем приоритеты
-	while (ant < count_ants)
+	while (ant < count_ants + 1)
 	{
 		current = paths;
 		while (current)
@@ -29,7 +29,7 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 				break ;
 
 			//пускаем муравья по этому пути
-			at_finish += set_ant(current, ant);
+			at_finish += set_ant(current, ant, graph);
 			current = current->next;
 			ant++;
 		}
@@ -44,9 +44,8 @@ void send_ants(int **graph, int count_ants, t_path *paths)
 //			ft_printf("\tANTS: ");
 //			print_path(current->ants, current->length);
 
-			at_finish += move_ants(current);
+			at_finish += move_ants(current, graph);
 			current = current->next;
-//			ft_printf("\tAt finish: %d\t\t\t", at_finish);
 		}
 		ft_printf("\n");
 	}

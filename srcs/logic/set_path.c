@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "lemin.h"
 
-int *set_path(int len, int *stack_path, int **graph, int end)
+int *set_path(int len, int *stack_path, t_room *graph, int end)
 {
 	int	i;
 	int j;
@@ -24,7 +24,7 @@ int *set_path(int len, int *stack_path, int **graph, int end)
 	while (j < len)
 	{
 		path[i] = stack_path[j];
-		graph[stack_path[j]][0] = 0;
+		graph[stack_path[j]].edges[0] = 0;
 		i++;
 		j++;
 	}

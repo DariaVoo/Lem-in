@@ -6,7 +6,7 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:37:07 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:37:07 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 20:26:13 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
@@ -15,14 +15,15 @@ void ft_zero(int *arr, size_t size)
 {
 	int i = 0;
 
-	while (i < size){
+	while (i < size)
+	{
 		arr[i] = 0;
 		i++;
 	}
 }
 
 // Возвращает массив из путей
-t_path * dinic(int **graph, size_t count_v)
+t_path *dinic(t_room *graph, size_t count_v)
 {
 	int *distance; // расстояния до вершин
 	int *queue_stack; // очередь
@@ -45,6 +46,8 @@ t_path * dinic(int **graph, size_t count_v)
 	while (bfs(graph, count_v, distance, queue_stack)) // достижима ли t из s
 	{
 		ft_zero(queue_stack, count_v);
+		//print_arr(distance, count_v);
+
 		while ((len = find_path(0, end, graph, distance, visited, queue_stack))) // ищем блокирующие пути
 		{
 			//строим путь

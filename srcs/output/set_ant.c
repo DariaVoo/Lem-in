@@ -6,12 +6,12 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:36:51 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:36:51 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 21:05:20 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
 
-int set_ant(t_path *paths, int ant)
+int set_ant(t_path *paths, int ant, t_room *graph)
 {
 	int i;
 	int finish;
@@ -24,12 +24,12 @@ int set_ant(t_path *paths, int ant)
 	{
 		paths->ants[i] = paths->ants[i - 1];
 		if (i != paths->length)
-			ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
+			ft_printf("L%d-%s ", paths->ants[i], graph[paths->path[i]].name);
 		i--;
 	}
 	paths->ants[i] = ant;
 	if (!finish)
 		paths->last_ant++;
-	ft_printf("L%d-%d ", paths->ants[i], paths->path[i]);
+	ft_printf("L%d-%s ", paths->ants[i], graph[paths->path[i]].name);
 	return (finish);
 }

@@ -6,7 +6,7 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:32:43 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:32:43 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 20:56:19 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
@@ -74,49 +74,55 @@ int	main(void)
 	int count_edges = 5;
 	t_path *paths;
 
-	graph = new_table(count_v, count_edges);
-	/** заполняем массив смежности
-	 * вершина: смежные вершины*/
-	graph[0][0] = 1; //  из вершины s
-	graph[0][1] = 2;
-	graph[0][2] = 3;
 
-	graph[1][0] = 4;
-	graph[1][1] = 5;
-	graph[2][0] = 3;
+	t_lemin lemin;
+	int i;
+	char    **split_file;
 
-	graph[2][1] = 6;
-	graph[3][0] = 5;
+	/** Парсинг*/
+	split_file = NULL;
+	i = 0;
+	init_lemin(&lemin);
+	split_file = parser_file(split_file); // считали и засплитили файл
 
-//	graph[2][1] = 5;
-//	graph[3][0] = 6;
+	// этап валидации. проверяем файл на соответствие нужному
+	file_checker(split_file, &lemin);
 
-	graph[4][0] = 8;
-	graph[5][0] = 8;
-	graph[5][1] = 7;
+	// Создаем комнаты
+	t_room rooms[lemin.room_num];
+	while (i < lemin.room_num)
+	{
+		init_rooms(&rooms[i]);
+		i++;
+	}
+	create_rooms(lemin.room_num, rooms, &lemin, split_file);
 
-	graph[6][0] = 5;
-	graph[6][1] = 9;
-	graph[9][0] = 6;
-	graph[9][1] = 10;//
+	// Парсим ребра в массив
+	int     edges[lemin.edges_num * 2];
+	create_edges_arr(lemin.edges_num * 2, edges, &lemin, split_file, rooms);
+	if (!(malloc_rooms_edges(rooms, lemin.room_num)))
+	{
+		ft_printf("ERROR!\n");
+		exit (1);
+	}
+	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
 
-	graph[9][0] = 7;
-	graph[7][1] = 5;
-	graph[7][2] = 8;
-	graph[7][3] = 9;
-
-	graph[8][0] = end; // в t
-	graph[7][0] = end;
-	graph[10][0] = end;
-	//print_graph(graph, count_v);
-
-	paths = dinic(graph, count_v);
+ 	/** Логика*/
+	paths = dinic(rooms, lemin.room_num);
 	if (!paths)
 		ft_printf("No Path!\n");
 	else
-		send_ants(graph, count_ants, paths);
+		send_ants(rooms, lemin.ant_num, paths);
 
-	free_table((void **)graph, count_ants);
+	/** Free*/
+	i = 0;
+	while (i < lemin.room_num)
+	{
+		free(rooms[i].name);
+		free(rooms[i].edges);
+		i++;
+	}
+	ft_free((void**)split_file, lemin.lines_count);
 	free_paths(&paths);
 	return (0);
 }

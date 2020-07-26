@@ -6,12 +6,12 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:36:07 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:36:07 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 21:05:21 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
 
-int move_ants(t_path *path)
+int move_ants(t_path *path, t_room *graph)
 {
 	int i;
 	int j;
@@ -31,7 +31,7 @@ int move_ants(t_path *path)
 	while (j != -1 && path->ants[j] != 0)
 	{
 		path->ants[i] = path->ants[j];
-		ft_printf("L%d-%d ", path->ants[i], path->path[i]);
+		ft_printf("L%d-%s ", path->ants[i], graph[path->path[i]].name);
 		i--;
 		j--;
 	}

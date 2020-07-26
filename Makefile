@@ -13,23 +13,27 @@ INCLUDES := -I $(HEADERS_DIR) -I $(LIBFT_HEADERS_DIR)
 
 SRC_DIR = srcs/
 SRC_DIR_PARSE = parse/
+SRC_DIR_VALIDATE = validate/
 SRC_DIR_LOGIC = logic/
 SRC_DIR_OUTPUT = output/
 
 SRC_MAIN = lemin.c
-SRC_PARSE_FILES =
+SRC_PARSE_FILES = count_items.c init_lemin.c parser.c utils.c
+SRC_VALIDATE_FILES = validate_file.c
 SRC_LOGIC_FILES = bfs.c dinic.c find_path.c set_path.c add_path.c new_path.c reverse_paths.c free_paths.c
 SRC_OUTPUT_FILES = send_ants.c set_prior.c move_ants.c set_ant.c
 
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))
+SRC_VALIDATE = $(addprefix $(SRC_DIR_VALIDATE), $(SRC_VALIDATE_FILES))
 SRC_LOGIC = $(addprefix $(SRC_DIR_LOGIC), $(SRC_LOGIC_FILES))
 SRC_OUTPUT = $(addprefix $(SRC_DIR_OUTPUT), $(SRC_OUTPUT_FILES))
 
-SRCS_LST = $(SRC_MAIN) $(SRC_PARSE) $(SRC_LOGIC) $(SRC_OUTPUT)
+SRCS_LST = $(SRC_MAIN) $(SRC_PARSE) $(SRC_VALIDATE) $(SRC_LOGIC) $(SRC_OUTPUT)
 SRCS = $(addprefix $(SRC_DIR), $(SRCS_LST))
 
 OBJ_DIR = objects/
-OBJ_DIRS = $(addprefix $(OBJ_DIR), $(SRC_DIR_PARSE)) $(addprefix $(OBJ_DIR), $(SRC_DIR_LOGIC)) $(addprefix $(OBJ_DIR), $(SRC_DIR_OUTPUT))
+OBJ_DIRS = $(addprefix $(OBJ_DIR), $(SRC_DIR_PARSE)) $(addprefix $(OBJ_DIR), $(SRC_DIR_LOGIC)) \
+			$(addprefix $(OBJ_DIR), $(SRC_DIR_OUTPUT)) $(addprefix $(OBJ_DIR), $(SRC_DIR_VALIDATE))
 OBJ_LST = $(patsubst %.c, %.o, $(SRCS_LST))
 OBJ	= $(addprefix $(OBJ_DIR), $(OBJ_LST))
 
