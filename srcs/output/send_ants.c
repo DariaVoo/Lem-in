@@ -33,9 +33,15 @@ void send_ants(t_room *graph, int count_ants, t_path *paths)
 			current = current->next;
 			ant++;
 		}
+		while (current)
+    	{
+        	at_finish += move_ants(current, graph);
+        	current = current->next;
+    	}
 		ft_printf("\n");
 	}
 //	ft_printf("NNNNNNN\n");
+	
 	while (at_finish < count_ants)
 	{
 		current = paths;
