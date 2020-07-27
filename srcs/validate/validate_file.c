@@ -12,16 +12,16 @@ void    file_checker(char **split_file, t_lemin *lemin)
         //ft_printf("%s\n", split_file[lines_count]);
         lines_count++;
     }
-    ft_printf("%d\n", lines_count);
+    ft_printf("Count lines%d\n", lines_count);
     lemin->lines_count = lines_count;
 
     // Считаем муравьев
     lemin->ant_num = ant_count(split_file[0]);
-    ft_printf("%d\n", lemin->ant_num);
+    ft_printf("Count ant %d\n", lemin->ant_num);
 
     // Считаем комнаты
     count_items(split_file, lines_count, lemin);
-    ft_printf("%d\n", lemin->room_num);
+    ft_printf("Count rooms %d\n", lemin->room_num);
 
 }
 

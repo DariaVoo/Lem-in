@@ -112,7 +112,7 @@ int	main(void)
 
  	/** Логика*/
 	paths = dinic(rooms, lemin.room_num);
-	print_paths(paths);
+	//print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");
 	else
