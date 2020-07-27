@@ -6,7 +6,7 @@
 /*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:36:42 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/26 21:05:20 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 21:46:35 by snorcros         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include "lemin.h"
@@ -27,11 +27,15 @@ void send_ants(t_room *graph, int count_ants, t_path *paths)
 		{
 			if (count_ants - ant < current->prior) // если не выгодно пускать муравья по этому пути
 				break ;
-
 			//пускаем муравья по этому пути
 			at_finish += set_ant(current, ant, graph);
 			current = current->next;
 			ant++;
+		}
+		while (current)
+		{
+			at_finish += move_ants(current, graph);
+			current = current->next;
 		}
 		ft_printf("\n");
 	}

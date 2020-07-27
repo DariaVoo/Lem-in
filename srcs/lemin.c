@@ -39,7 +39,7 @@ void print_paths(t_path *paths)
 {
 	ft_printf("PATHS:\n");
 	while (paths) {
-		ft_printf("path:\t");
+		ft_printf("\npath:\t");
 		print_path(paths->path, paths->length);
 		paths = paths->next;
 	}
@@ -109,6 +109,7 @@ int	main(void)
 
  	/** Логика*/
 	paths = dinic(rooms, lemin.room_num);
+	print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");
 	else
