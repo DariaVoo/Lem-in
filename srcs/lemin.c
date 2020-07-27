@@ -42,7 +42,8 @@ void print_paths(t_path *paths)
 	ft_printf("PATHS:\n");
 	while (paths) {
 		ft_printf("\npath%d:\t", i);
-		print_path(paths->path, paths->length);
+		ft_printf("\tlen %d\t", paths->length);
+		//print_path(paths->path, paths->length);
 		paths = paths->next;
 		i++;
 	}
