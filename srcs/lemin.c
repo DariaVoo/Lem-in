@@ -37,11 +37,14 @@ void print_path(int *arr, int len)
 
 void print_paths(t_path *paths)
 {
+	int i = 1;
+
 	ft_printf("PATHS:\n");
 	while (paths) {
-		ft_printf("\npath:\t");
+		ft_printf("\npath%d:\t", i);
 		print_path(paths->path, paths->length);
 		paths = paths->next;
+		i++;
 	}
 	ft_printf("\n");
 }
