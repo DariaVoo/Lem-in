@@ -7,7 +7,7 @@
 
 
 /* Парсинг */
-#define FILE_READ_SIZE 8192
+#define FILE_READ_SIZE 1
 
 typedef struct      s_lemin
 {
@@ -86,11 +86,13 @@ void send_ants(t_room *graph, int count_ants, t_path *paths);
 int move_ants(t_path *path, t_room *graph);
 int set_ant(t_path *paths, int ant, t_room *graph);
 
+void print_arr(int *arr, size_t size);
+void print_paths(t_path *paths);
 void	add_path(t_path **alst, t_path *neww);
 t_path *new_path(int *path, int length_path);
 void free_paths(t_path **paths);
 void		reverse_paths(t_path **begin_list);
-void set_prior(t_path *paths);
+void set_prior(t_path *paths, int count_ant);
 
 int *set_path(int len, int *stack_path, t_room *graph, int end);
 

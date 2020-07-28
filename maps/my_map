@@ -1,47 +1,50 @@
 13
 #Here is the number of lines required: 17
 ##start
-ss 3 3
+s 3 3
 ##end
-finish a8 a8
-a1 4 4
-a2 7 7
-a3 10 10
-a4 12 12
-a5 16 16
-a6 19 19
-a7 22 22
-a8 26 26
-a9 31 31
-a10 35 35
-a11 37 37
-a12 41 41
-a13 44 44
-a14 46 46
-a15 49 49
-ss-a1
-ss-a2
-ss-a3
-ss-a4
-ss-a5
-a1-a7
-a2-a6
-a2-a7
-a2-a8
-a3-a8
-a4-a9
-a5-a10
-a6-a11
-a7-a12
-a8-a12
-a8-a13
-a9-a14
-a10-a15
-a12-a13
-a11-finish
-a12-finish
-a13-finish
-a14-finish
-a15-finish
+finish 8 8
+1 4 4
+2 7 7
+3 10 10
+4 12 12
+5 16 16
+6 19 19
+7 22 22
+8 26 26
+9 31 31
+10 35 35
+11 37 37
+12 41 41
+13 44 44
+14 46 46
+15 49 49
+16 49 49
+s-1
+s-2
+s-3
+s-4
+s-5
+1-7
+2-6
+2-7
+2-8
+3-8
+4-9
+4-15
+5-10
+6-11
+7-12
+8-12
+8-13
+9-14
+10-15
+12-13
+11-16
+12-finish
+13-finish
+14-finish
+15-finish
+16-finish
 #Here is the number of lines required: 74
 

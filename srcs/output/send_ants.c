@@ -19,7 +19,8 @@ void send_ants(t_room *graph, int count_ants, t_path *paths)
 
 	ant = 1;
 	at_finish = 0;
-	set_prior(paths); // вычисляем приоритеты
+	set_prior(paths, count_ants); // вычисляем приоритеты
+//	print_paths(paths);
 	while (ant < count_ants + 1)
 	{
 		current = paths;
@@ -27,6 +28,8 @@ void send_ants(t_room *graph, int count_ants, t_path *paths)
 		{
 			if (count_ants - ant < current->prior) // если не выгодно пускать муравья по этому пути
 				break ;
+/*			if (current->prior - (count_ants - ant) > paths->length) // если не выгодно пускать муравья по этому пути
+				break ;*/
 			//пускаем муравья по этому пути
 			at_finish += set_ant(current, ant, graph);
 			current = current->next;

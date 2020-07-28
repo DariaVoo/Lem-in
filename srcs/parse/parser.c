@@ -14,15 +14,15 @@ char **parser_file(char **split_file)
         tmp[len] = '\0';
         if (str == NULL)
             str = ft_strdup(tmp);
-        else
-        {
+/*        else
+        {*/
             str2 = ft_strjoin(str, tmp);
             free(str);
             str = str2;
-        }
+       // }
     }
-    if (ft_strstr(str2, "\n\n") != 0)
-        exit(0);
+/*    if (ft_strstr(str2, "\n\n") != 0)
+        exit(0);*/
     if ((split_file = ft_strsplit(str2, '\n')) == NULL)
         exit (0);
     ft_strdel(&str2);
