@@ -70,6 +70,27 @@ void print_graph(int **graph, size_t size)
 	ft_printf("\n");
 }
 
+void print_ed(t_room *graph, int count_v)
+{
+	int i = 0;
+	int j = 0;
+	t_room v;
+
+	while (i < count_v)
+	{
+		v = graph[i];
+		j = 0;
+		while (j < graph[i].num_of_edges)
+		{
+			if (graph[i].flow[j] == 1)
+				ft_printf("%d-%d ", i, graph[i].edges[j]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
 int	main(void)
 {
 	t_path *paths;
@@ -110,7 +131,8 @@ int	main(void)
 		paths = full_dinic(rooms, lemin.room_num);
 	else
 		paths = dinic(rooms, lemin.room_num);
-	print_paths(paths);
+	print_ed(rooms, lemin.room_num);
+	//print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");
 	else

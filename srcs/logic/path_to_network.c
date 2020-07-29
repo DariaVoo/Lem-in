@@ -30,8 +30,8 @@ int path_to_network(t_room *graph, int len, int *stack_path)
 	int prev;
 	int index;
 
-	prev = stack_path[0];
-	i++;
+	prev = 0;
+	//i++;
 	while (i < len)
 	{
 		curr = stack_path[i];

@@ -39,7 +39,7 @@ int full_dinic(t_room *graph, size_t count_v)
 			//строим путь
 			path_to_network(graph, len, queue_stack + 1);
 			print_arr(queue_stack, len + 1);
-			add_path(&paths, new_path(set_path(len, queue_stack, graph, end), len));
+			//add_path(&paths, new_path(set_path(len, queue_stack, graph, end), len));
 			ft_zero(queue_stack, count_v);
 		}
 		ft_zero(distance, count_v);
