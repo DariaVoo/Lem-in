@@ -23,6 +23,18 @@ void print_arr(int *arr, size_t size)
 	ft_printf("\n");
 }
 
+void print_dist(int *arr, size_t size)
+{
+	size_t i = 0;
+	ft_printf("size %d\n", size);
+	ft_printf("вершина расстояние\n");
+	while (i < size) {
+		ft_printf("%d - %d\n", i, arr[i]);
+		i++;
+	}
+	ft_printf("\n");
+}
+
 void print_path(int *arr, int len)
 {
 	int i = 0;
@@ -131,8 +143,9 @@ int	main(void)
 		paths = full_dinic(rooms, lemin.room_num);
 	else
 		paths = dinic(rooms, lemin.room_num);
-	print_ed(rooms, lemin.room_num);
-	//print_paths(paths);
+	//print_ed(rooms, lemin.room_num);
+
+	print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");
 	else

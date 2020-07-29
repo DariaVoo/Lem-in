@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 #include "lemin.h"
 
-int full_dinic(t_room *graph, size_t count_v)
+t_path *full_dinic(t_room *graph, size_t count_v)
 {
 	int *distance; // расстояния до вершин
 	int *queue_stack; // очередь
+	int *prev; //
 	char *visited; // посещена вершина или нет
 	t_path *paths; // блокирующие пути
 	int len; // длина найденного блокирующего пути
@@ -25,10 +26,13 @@ int full_dinic(t_room *graph, size_t count_v)
 		return (NULL);
 	if (!(distance = (int *)malloc(sizeof(int) * count_v)))
 		return (NULL);
+	if (!(prev= (int *)malloc(sizeof(int) * count_v)))
+		return (NULL);
 	if (!(queue_stack = (int *)malloc(sizeof(int) * count_v)))
 		return (NULL);
 	ft_zero(queue_stack, count_v);
 	ft_zero(distance, count_v);
+	ft_zero(prev, count_v);
 
 	/** Добавляем кратчайший путь в paths[0]*/
 	while (bfs(graph, count_v, distance, queue_stack)) // достижима ли t из s
@@ -45,7 +49,12 @@ int full_dinic(t_room *graph, size_t count_v)
 		ft_zero(distance, count_v);
 		visited = ft_memset(visited, '\0', count_v);
 	}
-	reverse_paths(&paths);
+
+	ft_zero(queue_stack, count_v);
+	ft_zero(distance, count_v);
+	bfs_get_paths(graph, count_v, distance, queue_stack, prev);
+	paths = get_paths(graph, end, prev, distance);
+	//reverse_paths(&paths);
 	free(visited);
 	free(distance);
 	free(queue_stack);
