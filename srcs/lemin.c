@@ -120,14 +120,8 @@ int	main(void)
 		send_ants(rooms, lemin.ant_num, paths);
 
 	/** Free*/
-	i = 0;
-	while (i < lemin.room_num)
-	{
-		free(rooms[i].name);
-		free(rooms[i].edges);
-		i++;
-	}
-	ft_free((void**)split_file, lemin.lines_count);
-	free_paths(&paths);
+	ft_free_lemin(rooms, split_file, lemin.room_num, lemin.lines_count, &paths);
+
+	//free_paths(&paths);
 	return (0);
 }

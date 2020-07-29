@@ -8,21 +8,10 @@ void    file_checker(char **split_file, t_lemin *lemin)
 
     lines_count = 0;
     while (split_file[lines_count])
-    {
-        //ft_printf("%s\n", split_file[lines_count]);
         lines_count++;
-    }
-    ft_printf("Count lines%d\n", lines_count);
     lemin->lines_count = lines_count;
-
-    // Считаем муравьев
     lemin->ant_num = ant_count(split_file[0]);
-    ft_printf("Count ant %d\n", lemin->ant_num);
-
-    // Считаем комнаты
     count_items(split_file, lines_count, lemin);
-    ft_printf("Count rooms %d\n", lemin->room_num);
-
 }
 
 void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file)
@@ -32,10 +21,8 @@ void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file
 
     i = 1;
     room_id = 1;
-    //rooms = (t_room *)malloc(sizeof(t_room)*lemin->room_num);
     while (i < lemin->lines_count)
     {
-        //ft_printf("%s\n", split_file[i]);
         if (ft_word_counter(split_file[i], ' ') == 3 && split_file[i][0] != 'L' && split_file[i][0] != '#')
         {
             if (i == lemin->start_num)
@@ -52,7 +39,6 @@ void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file
                 room_id++;
             }
         }
-        //ft_printf("my id: %d, my name: %s, my X: %d, my Y: %d\n", rooms[i].id, rooms[i].name, rooms[i].x, rooms[i].y);
         i++;
     }
 }
@@ -147,10 +133,8 @@ int malloc_rooms_edges(t_room *rooms, int count_rooms)
 void init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin)
 {
     int i;
-    int index_in_da_room;
 
     i = 0;
-    //start = 0; // 
     while (i < len_edges)
     {
         int room_1;

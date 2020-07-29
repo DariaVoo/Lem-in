@@ -4,9 +4,19 @@
 int ant_count(char *line)
 {
     int ant_count;
+	int	i;
 
-    ant_count = ft_atoi(line);
-
+	i = 0;
+	while (ft_isdigit(line[i]))
+		i++;
+	if (line[i])
+		ft_exit("Incorrect number of ANTS\n");
+	ant_count = ft_atoi(line);
+	if (ant_count < 1 || ant_count > INT32_MAX)
+		ft_exit("Incorrect number of ANTS\n");
+	ft_putnbr(ant_count);
+	ft_putchar('\n');
+	
     return (ant_count);
 }
 
@@ -14,21 +24,30 @@ int ant_count(char *line)
 void count_items(char **split_file, int lines_count, t_lemin *lemin)
 {
     int i;
+    int start_count;
+    int end_count;
 
     i = 1;
+    start_count = 0;
+    end_count = 0;
     while (i < lines_count)
     {
         if (ft_word_counter(split_file[i], ' ') == 3 && split_file[i][0] != 'L' && split_file[i][0] != '#')
             lemin->room_num++;
-        if (ft_strstr(split_file[i], "##start"))
+        if (ft_strstr(split_file[i], "##start\0"))
+        {
             lemin->start_num = i + 1;
-        if (ft_strstr(split_file[i], "##end"))
+            start_count++;
+        }
+        if (ft_strstr(split_file[i], "##end\0"))
+        {
             lemin->end_num = i + 1;
+            end_count++;
+        }
         if (ft_word_counter(split_file[i], '-') == 2)
             lemin->edges_num++;
         i++;
     }
-
-    //return (num_rooms);
+    start_end_fail(start_count, end_count);
 }
 

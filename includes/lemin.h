@@ -5,6 +5,15 @@
 # include <stdlib.h>
 # include "libftprintf.h"
 
+typedef struct		s_path
+{
+	int	*path;
+	int	length;
+	int prior;
+	int *ants; // муравьи перемещающиеся по пути
+	int last_ant; // индекс последнего муравья на этом пути
+	struct s_path *next;
+}					t_path;
 
 /* Парсинг */
 #define FILE_READ_SIZE 8192
@@ -41,7 +50,7 @@ void    init_rooms(t_room *room);
 ** Parser functions
 */
 
-char    **parser_file(char **split_file);
+char    **parser_file(char **spl);
 void count_items(char **split_file, int lines_count, t_lemin *lemin);
 int ant_count(char *line);
 
@@ -57,7 +66,12 @@ void    file_checker(char **split_file, t_lemin *lemin);
 */
 
 int	ft_word_counter(char const *s, char c);
+void str_init(char **str, char **str2);
 void	**ft_free(void **mas, size_t len);
+void ft_exit(char *str);
+void start_end_fail(int start_count, int end_count);
+
+void ft_free_lemin(t_room *rooms, char **split_file, int room_num, int lines_count, t_path **paths);
 
 /*
 ** create functions
@@ -70,15 +84,6 @@ int malloc_rooms_edges(t_room *rooms, int count_rooms);
 void init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin);
 
 /* Логика и вывод ответа*/
-typedef struct		s_path
-{
-	int	*path;
-	int	length;
-	int prior;
-	int *ants; // муравьи перемещающиеся по пути
-	int last_ant; // индекс последнего муравья на этом пути
-	struct s_path *next;
-}					t_path;
 
 void ft_zero(int *arr, size_t size);
 
