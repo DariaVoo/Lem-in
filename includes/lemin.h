@@ -108,4 +108,9 @@ void print_path(int *arr, int len);
 void print_arr(int *arr, size_t size);
 void print_graph(int **graph, size_t size);
 
+// full dinic
+int path_to_network(t_room *graph, int len, int *stack_path);
+int find_flow(int start, int end, t_room *graph, int *distance, char *visited, int *stack);
+int full_dinic(t_room *graph, size_t count_v);
+
 #endif

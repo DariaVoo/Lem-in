@@ -34,9 +34,11 @@ int full_dinic(t_room *graph, size_t count_v)
 	while (bfs(graph, count_v, distance, queue_stack)) // достижима ли t из s
 	{
 		ft_zero(queue_stack, count_v);
-		while ((len = find_path(0, end, graph, distance, visited, queue_stack))) // ищем блокирующие пути
+		while ((len = find_flow(0, end, graph, distance, visited, queue_stack))) // ищем блокирующие пути
 		{
 			//строим путь
+			path_to_network(graph, len, queue_stack + 1);
+			print_arr(queue_stack, len + 1);
 			add_path(&paths, new_path(set_path(len, queue_stack, graph, end), len));
 			ft_zero(queue_stack, count_v);
 		}

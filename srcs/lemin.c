@@ -14,10 +14,10 @@
 void print_arr(int *arr, size_t size)
 {
 	size_t i = 0;
-	ft_printf("size %d\n", size);
-	ft_printf("вершина расстояние\n");
+	ft_printf("size %d\t", size);
+	//ft_printf("вершина расстояние\n");
 	while (i < size) {
-		ft_printf("%d\t%d\n", i, arr[i]);
+		ft_printf("%d - ", arr[i]);
 		i++;
 	}
 	ft_printf("\n");
@@ -72,14 +72,7 @@ void print_graph(int **graph, size_t size)
 
 int	main(void)
 {
-	int **graph;
-	size_t count_v = 12;
-	int end = 11;
-	int count_ants = 10;
-	int count_edges = 5;
 	t_path *paths;
-
-
 	t_lemin lemin;
 	int i;
 	char    **split_file;
@@ -113,7 +106,10 @@ int	main(void)
 	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
 
  	/** Логика*/
-	paths = dinic(rooms, lemin.room_num);
+ 	if (lemin.ant_num > 100)
+		paths = full_dinic(rooms, lemin.room_num);
+	else
+		paths = dinic(rooms, lemin.room_num);
 	print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");

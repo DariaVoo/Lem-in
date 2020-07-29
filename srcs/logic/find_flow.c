@@ -24,12 +24,12 @@ int find_flow(int start, int end, t_room *graph, int *distance, char *visited, i
 		while (i < graph[start].num_of_edges) // смотрим все рёбра
 		{
 			u = graph[start].edges[i];
-			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0') && u != start) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
+			if (((distance[u] == distance[start] + 1) || (distance[start] + 1 == distance[u]))
+				&& graph[start].flow[i] == 0 && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
 			{
 				top++;
 				stack[top] = u; // кладём на стек
 				start = u;
-				//if (graph[u].)
 				if (start != end)
 					visited[start] = '1'; // Отмечаем, что посетили эту вершину
 				i = 0;
