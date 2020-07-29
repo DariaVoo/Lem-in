@@ -39,8 +39,6 @@ t_path *dinic(t_room *graph, size_t count_v)
 		return (NULL);
 	if (!(queue_stack = (int *)malloc(sizeof(int) * count_v)))
 		return (NULL);
-//	ft_memset(queue_stack, 0, count_v);
-//	ft_memset(distance, 0, count_v);
 	ft_zero(queue_stack, count_v);
 	ft_zero(distance, count_v);
 

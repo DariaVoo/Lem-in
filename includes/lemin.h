@@ -7,7 +7,7 @@
 
 
 /* Парсинг */
-#define FILE_READ_SIZE 1
+#define FILE_READ_SIZE 8192
 
 typedef struct      s_lemin
 {
