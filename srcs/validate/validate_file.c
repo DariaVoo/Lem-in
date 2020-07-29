@@ -141,7 +141,7 @@ int malloc_rooms_edges(t_room *rooms, int count_rooms)
             return (0);
 		if (!(rooms[i].flow = (int *)malloc(sizeof(int) * rooms[i].num_of_edges)))
 			return (0);
-		ft_zero(rooms[i].flow, rooms[i].num_of_edges);
+		ft_bzero(rooms[i].flow, rooms[i].num_of_edges);
         i++;
     }
     return (1);

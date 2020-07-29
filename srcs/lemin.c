@@ -116,8 +116,13 @@ int	main(void)
 	init_lemin(&lemin);
 	split_file = parser_file(split_file); // считали и засплитили файл
 
+	ft_printf("yes parser file\n");
+
+
 	// этап валидации. проверяем файл на соответствие нужному
 	file_checker(split_file, &lemin);
+	ft_printf("yes file cheker\n");
+
 
 	// Создаем комнаты
 	t_room rooms[lemin.room_num];
@@ -127,16 +132,21 @@ int	main(void)
 		i++;
 	}
 	create_rooms(lemin.room_num, rooms, &lemin, split_file);
+	ft_printf("yes create rooms\n");
+
 
 	// Парсим ребра в массив
 	int     edges[lemin.edges_num * 2];
 	create_edges_arr(lemin.edges_num * 2, edges, &lemin, split_file, rooms);
+	ft_printf("yes create edges arr\n");
+
 	if (!(malloc_rooms_edges(rooms, lemin.room_num)))
 	{
 		ft_printf("ERROR!\n");
 		exit (1);
 	}
 	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
+	ft_printf("yes init rooms\n");
 
  	/** Логика*/
  	if (lemin.ant_num > 100)
@@ -144,8 +154,8 @@ int	main(void)
 	else
 		paths = dinic(rooms, lemin.room_num);
 	//print_ed(rooms, lemin.room_num);
-
 	print_paths(paths);
+
 	if (!paths)
 		ft_printf("No Path!\n");
 	else

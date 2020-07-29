@@ -21,7 +21,7 @@ SRC_MAIN = lemin.c
 SRC_PARSE_FILES = count_items.c init_lemin.c parser.c utils.c
 SRC_VALIDATE_FILES = validate_file.c
 SRC_LOGIC_FILES = bfs.c dinic.c find_path.c set_path.c add_path.c new_path.c reverse_paths.c free_paths.c\
-					full_dinic.c find_flow.c path_to_network.c
+					full_dinic.c find_flow.c path_to_network.c bfs_get_paths.c
 SRC_OUTPUT_FILES = send_ants.c set_prior.c move_ants.c set_ant.c
 
 SRC_PARSE = $(addprefix $(SRC_DIR_PARSE), $(SRC_PARSE_FILES))

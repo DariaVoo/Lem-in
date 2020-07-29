@@ -19,4 +19,5 @@ void    init_rooms(t_room *room)
     room->num_of_edges = 0;
     room->index_edge = 0;
     room->edges = NULL;
+	room->flow = NULL;
 }

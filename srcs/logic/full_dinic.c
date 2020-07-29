@@ -34,6 +34,7 @@ t_path *full_dinic(t_room *graph, size_t count_v)
 	ft_zero(distance, count_v);
 	ft_zero(prev, count_v);
 
+	ft_printf("search...\n");
 	/** Добавляем кратчайший путь в paths[0]*/
 	while (bfs(graph, count_v, distance, queue_stack)) // достижима ли t из s
 	{
@@ -43,18 +44,17 @@ t_path *full_dinic(t_room *graph, size_t count_v)
 			//строим путь
 			path_to_network(graph, len, queue_stack + 1);
 			print_arr(queue_stack, len + 1);
-			//add_path(&paths, new_path(set_path(len, queue_stack, graph, end), len));
 			ft_zero(queue_stack, count_v);
 		}
 		ft_zero(distance, count_v);
 		visited = ft_memset(visited, '\0', count_v);
 	}
-
 	ft_zero(queue_stack, count_v);
 	ft_zero(distance, count_v);
 	bfs_get_paths(graph, count_v, distance, queue_stack, prev);
 	paths = get_paths(graph, end, prev, distance);
 	//reverse_paths(&paths);
+	free(prev);
 	free(visited);
 	free(distance);
 	free(queue_stack);
