@@ -29,7 +29,7 @@ int bfs(t_room *graph, size_t count_v, int *distance, int *queue)
 		while (j < graph[u].num_of_edges) // смотрим все рёбра этой вершины
 		{
 			v = graph[u].edges[j];
-			if (distance[v] == 0 && v != 0) // расстояние до этой вершины ещё не вычислено
+			if (distance[v] == 0 && graph[u].flow[j] == 0 && v != 0) // расстояние до этой вершины ещё не вычислено
 			{
 				distance[v] = distance[u] + 1;
 				queue[end] = v; // добавляем вершину в очередь

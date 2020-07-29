@@ -25,9 +25,13 @@ typedef struct s_room
 	char *name;
 	int x;
 	int y;
+	int in_path;
+	int in; //в эту вершину заходит ребро
+	int out; // из этой вершины выходит ребро
 	int num_of_edges;
 	int index_edge;
 	int *edges;// массив номеров (id) смежных вершин
+	int *flow;
 } t_room;
 
 /*
