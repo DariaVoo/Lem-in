@@ -83,6 +83,7 @@ typedef struct		s_path
 void ft_zero(int *arr, size_t size);
 
 void send_ants(t_room *graph, int count_ants, t_path *paths);
+int		step_all(t_path *current, t_room *graph);
 int move_ants(t_path *path, t_room *graph);
 int set_ant(t_path *paths, int ant, t_room *graph);
 

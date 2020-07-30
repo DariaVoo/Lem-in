@@ -12,14 +12,14 @@
 
 #include "lemin.h"
 
-int set_ant(t_path *paths, int ant, t_room *graph)
+int	set_ant(t_path *paths, int ant, t_room *graph)
 {
 	int i;
 	int finish;
 
 	finish = 0;
 	i = paths->last_ant + 1;
-	if (i == paths->length - 1) // сейчас кто-то перейдёт на финиш
+	if (i == paths->length - 1)
 		finish = 1;
 	while (i)
 	{

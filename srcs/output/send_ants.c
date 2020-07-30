@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int step_all(t_path *current, t_room *graph)
+int		step_all(t_path *current, t_room *graph)
 {
 	int at_finish;
 
@@ -25,21 +25,21 @@ int step_all(t_path *current, t_room *graph)
 	return (at_finish);
 }
 
-void send_ants(t_room *graph, int count_ants, t_path *paths)
+void	send_ants(t_room *graph, int count_ants, t_path *paths)
 {
-	t_path *current;
-	int at_finish;
-	int ant;
+	int		ant;
+	int		at_finish;
+	t_path	*current;
 
 	ant = 1;
 	at_finish = 0;
-	set_prior(paths); // вычисляем приоритеты
+	set_prior(paths);
 	while (ant < count_ants + 1)
 	{
 		current = paths;
 		while (current)
 		{
-			if (count_ants - ant < current->prior) // если не выгодно пускать муравья по этому пути
+			if (count_ants - ant < current->prior)
 				break ;
 			at_finish += set_ant(current, ant, graph);
 			current = current->next;
