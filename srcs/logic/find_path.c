@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: snorcros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:37:10 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/26 20:45:15 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 20:45:15 by snorcros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
 int find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack)

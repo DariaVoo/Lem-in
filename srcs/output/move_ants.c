@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   move_ants.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: snorcros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:36:07 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/26 21:05:21 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/26 21:05:21 by snorcros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
 int move_ants(t_path *path, t_room *graph)

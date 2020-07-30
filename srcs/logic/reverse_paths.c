@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_paths.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: snorcros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:37:23 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:37:23 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/25 12:37:23 by snorcros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
 void		reverse_paths(t_path **begin_list)

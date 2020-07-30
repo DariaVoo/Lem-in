@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   set_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: snorcros <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:37:25 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/25 12:37:25 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/07/25 12:37:25 by snorcros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "lemin.h"
 
 int *set_path(int len, int *stack_path, t_room *graph, int end)
