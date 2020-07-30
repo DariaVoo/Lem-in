@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-t_path *new_path(int *path, int length_path)
+t_path	*new_path(int *path, int length_path)
 {
 	t_path	*node;
 

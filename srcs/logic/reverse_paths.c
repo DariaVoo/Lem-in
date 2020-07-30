@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void		reverse_paths(t_path **begin_list)
+void	reverse_paths(t_path **begin_list)
 {
 	t_path	*current;
 	t_path	*previous;

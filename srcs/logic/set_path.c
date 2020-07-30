@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int *set_path(int len, int *stack_path, t_room *graph, int end)
+int	*set_path(int len, int *stack_path, t_room *graph, int end)
 {
 	int	i;
 	int j;
@@ -32,4 +32,3 @@ int *set_path(int len, int *stack_path, t_room *graph, int end)
 	path[i] = end;
 	return (path);
 }
-

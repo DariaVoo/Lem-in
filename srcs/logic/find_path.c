@@ -12,36 +12,37 @@
 
 #include "lemin.h"
 
-int find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack)
+int	find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack)
 {
 	int u;
-	int i = 0;
-	int top = 0; // указатель на вершину стека
+	int i;
+	int top;
 
-	stack[top] = start; // закидываем на стек start = 0
-	u = 1;
+	i = 0;
+	top = 0;
+	stack[top] = start;
 	while (1)
 	{
-		while (i < graph[start].num_of_edges) // смотрим все рёбра
+		while (i < graph[start].num_of_edges)
 		{
 			u = graph[start].edges[i];
-			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
+			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0'))
 			{
 				top++;
-				stack[top] = u; // кладём на стек
+				stack[top] = u;
 				start = u;
 				if (start != end)
-					visited[start] = '1'; // Отмечаем, что посетили эту вершину
+					visited[start] = '1';
 				i = 0;
-			} else
+			}
+			else
 				i++;
-
 			if (start == end)
 				return (top);
 		}
-		if (i == graph[start].num_of_edges) // все рёбра перебрали, а пути не нашли
+		if (i == graph[start].num_of_edges)
 		{
-			top--; // убираем со стека
+			top--;
 			if (top == -1)
 				return (0);
 			start = stack[top];

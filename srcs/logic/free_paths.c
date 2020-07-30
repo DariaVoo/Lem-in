@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void free_paths(t_path **paths)
+void	free_paths(t_path **paths)
 {
 	t_path *current;
 
