@@ -117,7 +117,10 @@ int	main(void)
 	if (!paths)
 		ft_printf("No Path!\n");
 	else
+	{
+		set_prior(paths);
 		send_ants(rooms, lemin.ant_num, paths);
+	}
 
 	/** Free*/
 	i = 0;

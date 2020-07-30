@@ -33,7 +33,6 @@ void	send_ants(t_room *graph, int count_ants, t_path *paths)
 
 	ant = 1;
 	at_finish = 0;
-	set_prior(paths);
 	while (ant < count_ants + 1)
 	{
 		current = paths;
@@ -41,9 +40,8 @@ void	send_ants(t_room *graph, int count_ants, t_path *paths)
 		{
 			if (count_ants - ant < current->prior)
 				break ;
-			at_finish += set_ant(current, ant, graph);
+			at_finish += set_ant(current, ant++, graph);
 			current = current->next;
-			ant++;
 		}
 		at_finish += step_all(current, graph);
 		ft_printf("\n");
