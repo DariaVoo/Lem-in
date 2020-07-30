@@ -112,7 +112,7 @@ int	main(void)
 	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
 
  	/** Логика*/
-	paths = dinic(rooms, lemin.room_num);
+	paths = dinic(rooms, lemin.room_num, lemin.room_num - 1);
 	//print_paths(paths);
 	if (!paths)
 		ft_printf("No Path!\n");

@@ -94,7 +94,7 @@ void set_prior(t_path *paths);
 
 int *set_path(int len, int *stack_path, t_room *graph, int end);
 
-t_path *dinic(t_room *graph, size_t count_v);
+t_path *dinic(t_room *graph, int count_v, int end);
 int bfs(t_room *graph, size_t count_v, int *distance, int *queue);
 int find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack);
 
