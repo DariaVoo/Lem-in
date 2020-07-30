@@ -25,19 +25,17 @@ int	bfs(t_room *graph, size_t count_v, int *distance, int *queue)
 	end = 1;
 	while (head < count_v)
 	{
-		u = queue[head];
-		head++;
+		u = queue[head++];
 		j = 0;
 		while (j < graph[u].num_of_edges)
 		{
-			v = graph[u].edges[j];
+			v = graph[u].edges[j++];
 			if (distance[v] == 0 && v != 0)
 			{
 				distance[v] = distance[u] + 1;
 				queue[end] = v;
 				end++;
 			}
-			j++;
 		}
 	}
 	return (distance[count_v - 1]);
