@@ -71,14 +71,7 @@ void print_graph(int **graph, size_t size)
 
 int	main(void)
 {
-	int **graph;
-	size_t count_v = 12;
-	int end = 11;
-	int count_ants = 10;
-	int count_edges = 5;
 	t_path *paths;
-
-
 	t_lemin lemin;
 	int i;
 	char    **split_file;
