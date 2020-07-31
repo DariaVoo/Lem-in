@@ -24,51 +24,51 @@ void	ft_zero(int *arr, size_t size)
 	}
 }
 
-int		init_dinic(int **distance, int **queue_stack,
-					char **visited, int count_v)
+int		init_dinic(t_dinic *dinic, int count_v)
 {
-	if (!(*visited = ft_strnew(count_v)))
+	if (!(dinic->visited = ft_strnew(count_v)))
 		return (0);
-	if (!(*distance = (int *)malloc(sizeof(int) * count_v)))
+	if (!(dinic->distance = (int *)malloc(sizeof(int) * count_v)))
 		return (0);
-	if (!(*queue_stack = (int *)malloc(sizeof(int) * count_v)))
+	if (!(dinic->queue_stack = (int *)malloc(sizeof(int) * count_v)))
 		return (0);
-	ft_zero(*queue_stack, count_v);
-	ft_zero(*distance, count_v);
+	ft_zero(dinic->queue_stack, count_v);
+	ft_zero(dinic->distance, count_v);
 	return (1);
 }
 
-int		free_dinic(int **distance, int **queue_stack, char **visited)
+int		free_dinic(t_dinic *dinic)
 {
-	free(*visited);
-	free(*distance);
-	free(*queue_stack);
+	free(dinic->visited);
+	free(dinic->distance);
+	free(dinic->queue_stack);
 }
 
 t_path	*dinic(t_room *graph, int count_v, int end)
 {
-	int		*distance;
+/*	int		*distance;
 	int		*queue_stack;
-	char	*visited;
+	char	*visited;*/
+	t_dinic dinic_var;
 	t_path	*paths;
 	int		len;
 
 	paths = NULL;
-	if (!init_dinic(&distance, &queue_stack, &visited, count_v))
+	if (!init_dinic(&dinic_var, count_v))
 		return (NULL);
-	while (bfs(graph, count_v, distance, queue_stack))
+	while (bfs(graph, count_v, dinic_var.distance, dinic_var.queue_stack))
 	{
-		ft_zero(queue_stack, count_v);
-		while ((len = find_path(0, end, graph, distance, visited, queue_stack)))
+		ft_zero(dinic_var.queue_stack, count_v);
+		while ((len = find_path(0, end, graph, dinic_var.distance, dinic_var.visited, dinic_var.queue_stack)))
 		{
-			add_path(&paths, new_path(set_path(len, queue_stack, graph, end),
+			add_path(&paths, new_path(set_path(len, dinic_var.queue_stack, graph, end),
 												len));
-			ft_zero(queue_stack, count_v);
+			ft_zero(dinic_var.queue_stack, count_v);
 		}
-		ft_zero(distance, count_v);
-		visited = ft_memset(visited, '\0', count_v);
+		ft_zero(dinic_var.distance, count_v);
+		dinic_var.visited = ft_memset(dinic_var.visited, '\0', count_v);
 	}
 	reverse_paths(&paths);
-	free_dinic(&distance, &queue_stack, &visited);
+	free_dinic(&dinic_var);
 	return (paths);
 }

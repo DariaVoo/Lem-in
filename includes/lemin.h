@@ -80,6 +80,13 @@ typedef struct		s_path
 	struct s_path *next;
 }					t_path;
 
+typedef struct s_dinic
+{
+	int		*distance;
+	int		*queue_stack;
+	char	*visited;
+}				t_dinic;
+
 void ft_zero(int *arr, size_t size);
 
 void send_ants(t_room *graph, int count_ants, t_path *paths);
