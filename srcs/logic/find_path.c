@@ -12,7 +12,15 @@
 
 #include "lemin.h"
 
-int stack_pop(int *i, int *top, int *start, int *stack)
+int	stack_push(int *top, int *start, int *stack, int u)
+{
+	*top += 1;
+	stack[*top] = u;
+	*start = u;
+	return (1);
+}
+
+int	stack_pop(int *i, int *top, int *start, int *stack)
 {
 	*top -= 1;
 	if (*top == -1)
@@ -38,9 +46,7 @@ int	find_path(int start, int end, t_room *graph, t_dinic vars)
 			u = graph[start].edges[i];
 			if ((vars.distance[u] == vars.distance[start] + 1) && (vars.visited[u] == '\0'))
 			{
-				top++;
-				vars.queue_stack[top] = u;
-				start = u;
+				stack_push(&top, &start, vars.queue_stack, u);
 				if (start != end)
 					vars.visited[start] = '1';
 				i = 0;
