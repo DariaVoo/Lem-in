@@ -46,9 +46,6 @@ int		free_dinic(t_dinic *dinic)
 
 t_path	*dinic(t_room *graph, int count_v, int end)
 {
-/*	int		*distance;
-	int		*queue_stack;
-	char	*visited;*/
 	t_dinic dinic_var;
 	t_path	*paths;
 	int		len;
@@ -61,8 +58,8 @@ t_path	*dinic(t_room *graph, int count_v, int end)
 		ft_zero(dinic_var.queue_stack, count_v);
 		while ((len = find_path(0, end, graph, dinic_var)))
 		{
-			add_path(&paths, new_path(set_path(len, dinic_var.queue_stack, graph, end),
-												len));
+			add_path(&paths, new_path(
+					set_path(len, dinic_var.queue_stack, graph, end), len));
 			ft_zero(dinic_var.queue_stack, count_v);
 		}
 		ft_zero(dinic_var.distance, count_v);

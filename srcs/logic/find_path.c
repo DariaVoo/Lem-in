@@ -44,7 +44,8 @@ int	find_path(int start, int end, t_room *graph, t_dinic vars)
 		while (i < graph[start].num_of_edges)
 		{
 			u = graph[start].edges[i];
-			if ((vars.distance[u] == vars.distance[start] + 1) && (vars.visited[u] == '\0'))
+			if ((vars.distance[u] == vars.distance[start] + 1)
+				&& (vars.visited[u] == '\0'))
 			{
 				stack_push(&top, &start, vars.queue_stack, u);
 				if (start != end)
