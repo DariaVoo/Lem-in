@@ -12,7 +12,17 @@
 
 #include "lemin.h"
 
-int	find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack)
+int stack_pop(int *i, int *top, int *start, int *stack)
+{
+	*top -= 1;
+	if (*top == -1)
+		return (0);
+	*start = stack[*top];
+	*i = 0;
+	return (1);
+}
+
+int	find_path(int start, int end, t_room *graph, t_dinic vars)
 {
 	int u;
 	int i;
@@ -20,19 +30,19 @@ int	find_path(int start, int end, t_room *graph, int *distance, char *visited, i
 
 	i = 0;
 	top = 0;
-	stack[top] = start;
+	vars.queue_stack[top] = start;
 	while (1)
 	{
 		while (i < graph[start].num_of_edges)
 		{
 			u = graph[start].edges[i];
-			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0'))
+			if ((vars.distance[u] == vars.distance[start] + 1) && (vars.visited[u] == '\0'))
 			{
 				top++;
-				stack[top] = u;
+				vars.queue_stack[top] = u;
 				start = u;
 				if (start != end)
-					visited[start] = '1';
+					vars.visited[start] = '1';
 				i = 0;
 			}
 			else
@@ -41,12 +51,7 @@ int	find_path(int start, int end, t_room *graph, int *distance, char *visited, i
 				return (top);
 		}
 		if (i == graph[start].num_of_edges)
-		{
-			top--;
-			if (top == -1)
+			if (!stack_pop(&i, &top, &start, vars.queue_stack))
 				return (0);
-			start = stack[top];
-			i = 0;
-		}
 	}
 }

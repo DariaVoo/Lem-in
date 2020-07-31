@@ -90,7 +90,7 @@ typedef struct s_dinic
 void ft_zero(int *arr, size_t size);
 
 void send_ants(t_room *graph, int count_ants, t_path *paths);
-int		step_all(t_path *current, t_room *graph);
+int	step_all(t_path *current, t_room *graph);
 int move_ants(t_path *path, t_room *graph);
 int set_ant(t_path *paths, int ant, t_room *graph);
 
@@ -104,7 +104,7 @@ int *set_path(int len, int *stack_path, t_room *graph, int end);
 
 t_path *dinic(t_room *graph, int count_v, int end);
 int bfs(t_room *graph, size_t count_v, int *distance, int *queue);
-int find_path(int start, int end, t_room *graph, int *distance, char *visited, int *stack);
+int find_path(int start, int end, t_room *graph, t_dinic vars);
 
 void print_path(int *arr, int len);
 void print_arr(int *arr, size_t size);

@@ -59,7 +59,7 @@ t_path	*dinic(t_room *graph, int count_v, int end)
 	while (bfs(graph, count_v, dinic_var.distance, dinic_var.queue_stack))
 	{
 		ft_zero(dinic_var.queue_stack, count_v);
-		while ((len = find_path(0, end, graph, dinic_var.distance, dinic_var.visited, dinic_var.queue_stack)))
+		while ((len = find_path(0, end, graph, dinic_var)))
 		{
 			add_path(&paths, new_path(set_path(len, dinic_var.queue_stack, graph, end),
 												len));
