@@ -28,7 +28,7 @@ char **parser_file(char **spl)
         }
     }
     if (ft_strstr(str2, "\n\n") != 0 || (spl = ft_strsplit(str2, '\n')) == NULL)
-        ft_exit("WRONG MAP\n");
+        ft_exit("Wrong MAP\n");
     ft_strdel(&str2);
     return (spl);
 }

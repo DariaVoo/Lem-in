@@ -72,10 +72,10 @@ void print_graph(int **graph, size_t size)
 int	main(void)
 {
 	int **graph;
-	size_t count_v = 12;
-	int end = 11;
-	int count_ants = 10;
-	int count_edges = 5;
+	// size_t count_v = 12;
+	// int end = 11;
+	// int count_ants = 10;
+	// int count_edges = 5;
 	t_path *paths;
 
 
@@ -100,6 +100,7 @@ int	main(void)
 		i++;
 	}
 	create_rooms(lemin.room_num, rooms, &lemin, split_file);
+	chck_rooms(lemin.room_num, rooms);
 
 	// Парсим ребра в массив
 	int     edges[lemin.edges_num * 2];
@@ -110,6 +111,7 @@ int	main(void)
 		exit (1);
 	}
 	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
+	chck_edges(lemin.room_num, rooms);
 
  	/** Логика*/
 	paths = dinic(rooms, lemin.room_num);

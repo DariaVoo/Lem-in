@@ -23,16 +23,13 @@ void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file
     room_id = 1;
     while (i < lemin->lines_count)
     {
-        if (ft_word_counter(split_file[i], ' ') == 3 && split_file[i][0] != 'L' && split_file[i][0] != '#')
+        if (ft_word_counter(split_file[i], ' ') == 3)
         {
             if (i == lemin->start_num)
-            {
                 rooms[0] = create_single_room(0, split_file[i], &rooms[0]);
-            }
             else if (i == lemin->end_num)
-            {
-                rooms[room_num - 1] = create_single_room(lemin->room_num - 1, split_file[i], &rooms[lemin->room_num - 1]);
-            }
+                rooms[room_num - 1] = create_single_room(lemin->room_num - 1, split_file[i], \
+                &rooms[lemin->room_num - 1]);
             else
             {
                 rooms[room_id] = create_single_room(room_id, split_file[i], &rooms[room_id]);
@@ -45,22 +42,51 @@ void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file
 
 t_room create_single_room(int id, char *line, t_room *room)
 {
-    //ft_printf("Here!");
     char    **lines;
     int     i;
 
-    i = -1;
+    i = 0;
     lines = ft_strsplit(line, ' ');
-    
     room->id = id;
     room->name = ft_strdup(lines[0]);
+    while (ft_isdigit(lines[1][i]) || lines[1][i] == '-')
+		i++;
+	if (lines[1][i])
+		ft_exit("Incorrect coordinates\n");
+    i = 0;
+    while (ft_isdigit(lines[2][i]) || lines[2][i] == '-')
+		i++;
+	if (lines[2][i])
+		ft_exit("Incorrect coordinates\n");
     room->x = ft_atoi(lines[1]);
     room->y = ft_atoi(lines[2]);
-
     ft_free((void**)lines, 3);
-    //ft_printf("my id: %d, my name: %s, my X: %d, my Y: %d\n", room->id, room->name, room->x, room->y);
 
     return (*room);
+}
+
+void	chck_rooms(int room_num, t_room *rooms)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < room_num)
+    {
+        if (rooms[i].name[0] == 'L' || rooms[i].name[0] == '#')
+            ft_exit("incorrect ROOM name\n");
+        j = i + 1;
+        while (j < room_num)
+        {
+            if (ft_strcmp(rooms[i].name, rooms[j].name) == 0)
+            {
+                // ft_printf("%s --- %s\n", rooms[i].name, rooms[j].name);
+                ft_exit("same ROOM name\n");
+            }
+            j++;
+        }
+        i++;
+    }
 }
 
 void create_edges_arr(int edges_num, int *edges, t_lemin *lemin, char **split_file, t_room *rooms)
@@ -85,6 +111,7 @@ void create_edges_arr(int edges_num, int *edges, t_lemin *lemin, char **split_fi
             id_find = 0;
             find_1 = 0;
             find_2 = 0;
+            //ft_printf("I'm LINE NUMBER! - %d\n", i);
             while (id_find < lemin->room_num)
             {
                 if (find_1 == 0 && ft_strcmp(rooms[id_find].name, lines[0]) == 0)
@@ -108,26 +135,13 @@ void create_edges_arr(int edges_num, int *edges, t_lemin *lemin, char **split_fi
                 }
                 id_find++;
             }
+            if (find_1 == 0 || find_2 == 0)
+                ft_exit("Incorrect EDGE name\n");
         }
         ft_free((void**)lines, 2);
         i++;
-        //ft_printf("I'm LINE NUMBER! - %d\n", i);
     }
     
-}
-
-int malloc_rooms_edges(t_room *rooms, int count_rooms)
-{
-    int i;
-
-    i = 0;
-    while (i < count_rooms)
-    {
-        if (!(rooms[i].edges = (int *)malloc(sizeof(int) * rooms[i].num_of_edges)))
-            return (0);
-        i++;
-    }
-    return (1);
 }
 
 void init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin)
@@ -143,5 +157,32 @@ void init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin)
         rooms[edges[i]].edges[rooms[edges[i]].index_edge] = edges[i + 1];
         rooms[edges[i]].index_edge++;
         i += 2;
+    }
+}
+
+void chck_edges(int room_num, t_room *rooms)
+{
+    int i;
+    int j;
+    int k;
+
+    i = 0;
+    while (i < room_num)
+    {
+        j = 0;
+        while (j < rooms[i].num_of_edges)
+        {
+            k = j + 1;
+            while (k < rooms[i].num_of_edges && j < rooms[i].num_of_edges - 1)
+            {
+                if (rooms[i].edges[j] == rooms[i].edges[k])
+                    ft_exit("Same links");
+                k++;
+            }
+            if (rooms[i].id == rooms[i].edges[j])
+                ft_exit("ROOM links theirselves\n");
+            j++;
+        }
+        i++;
     }
 }

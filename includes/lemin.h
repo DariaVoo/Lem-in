@@ -60,6 +60,8 @@ int ant_count(char *line);
 */
 
 void    file_checker(char **split_file, t_lemin *lemin);
+void	chck_rooms(int room_num, t_room *rooms);
+void chck_edges(int room_num, t_room *rooms);
 
 /*
 ** util functions

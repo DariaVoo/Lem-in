@@ -32,19 +32,19 @@ void count_items(char **split_file, int lines_count, t_lemin *lemin)
     end_count = 0;
     while (i < lines_count)
     {
-        if (ft_word_counter(split_file[i], ' ') == 3 && split_file[i][0] != 'L' && split_file[i][0] != '#')
+        if (ft_word_counter(split_file[i], ' ') == 3)
             lemin->room_num++;
-        if (ft_strstr(split_file[i], "##start\0"))
+        if (ft_strcmp(split_file[i], "##start\0") == 0 && ft_word_counter(split_file[i + 1], ' ') == 3)
         {
             lemin->start_num = i + 1;
             start_count++;
         }
-        if (ft_strstr(split_file[i], "##end\0"))
+        if (ft_strcmp(split_file[i], "##end\0") == 0 && ft_word_counter(split_file[i + 1], ' ') == 3)
         {
             lemin->end_num = i + 1;
             end_count++;
         }
-        if (ft_word_counter(split_file[i], '-') == 2)
+        if (ft_word_counter(split_file[i], '-') == 2 && ft_word_counter(split_file[i], ' ') != 3)
             lemin->edges_num++;
         i++;
     }
