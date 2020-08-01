@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <snorcros@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:32:43 by snorcros          #+#    #+#             */
-/*   Updated: 2020/07/26 20:56:19 by snorcros         ###   ########lyon.fr   */
+/*   Updated: 2020/08/01 17:51:30 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "lemin.h"
 
+#include "lemin.h"
 void print_arr(int *arr, size_t size)
 {
 	size_t i = 0;
@@ -81,16 +81,16 @@ int	main(void)
 
 	t_lemin lemin;
 	int i;
-	char    **split_file;
+	char    **spl_f;
 
 	/** Парсинг*/
-	split_file = NULL;
+	spl_f = NULL;
 	i = 0;
 	init_lemin(&lemin);
-	split_file = parser_file(split_file); // считали и засплитили файл
+	spl_f = parser_file(spl_f); // считали и засплитили файл
 
 	// этап валидации. проверяем файл на соответствие нужному
-	file_checker(split_file, &lemin);
+	file_checker(spl_f, &lemin);
 
 	// Создаем комнаты
 	t_room rooms[lemin.room_num];
@@ -99,12 +99,12 @@ int	main(void)
 		init_rooms(&rooms[i]);
 		i++;
 	}
-	create_rooms(lemin.room_num, rooms, &lemin, split_file);
+	create_rooms(lemin.room_num, rooms, &lemin, spl_f);
 	chck_rooms(lemin.room_num, rooms);
 
 	// Парсим ребра в массив
 	int     edges[lemin.edges_num * 2];
-	create_edges_arr(lemin.edges_num * 2, edges, &lemin, split_file, rooms);
+	create_edges_arr(edges, &lemin, spl_f, rooms);
 	if (!(malloc_rooms_edges(rooms, lemin.room_num)))
 	{
 		ft_printf("ERROR!\n");
@@ -122,7 +122,7 @@ int	main(void)
 		send_ants(rooms, lemin.ant_num, paths);
 
 	/** Free*/
-	ft_free_lemin(rooms, split_file, lemin.room_num, lemin.lines_count, &paths);
+	ft_free_lemin(rooms, spl_f, lemin.room_num, lemin.lines_count, &paths);
 
 	//free_paths(&paths);
 	return (0);

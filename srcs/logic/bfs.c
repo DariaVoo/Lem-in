@@ -26,7 +26,7 @@ int bfs(t_room *graph, size_t count_v, int *distance, int *queue)
 		u = queue[head]; // запоминаем какую вершину мы будем рассматривать
 		head++; // "удаляем" вершину из очереди
 		j = 0;
-		while (j < graph[u].num_of_edges) // смотрим все рёбра этой вершины
+		while (j < graph[u].ed_num) // смотрим все рёбра этой вершины
 		{
 			v = graph[u].edges[j];
 			if (distance[v] == 0 && v != 0) // расстояние до этой вершины ещё не вычислено

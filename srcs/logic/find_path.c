@@ -21,7 +21,7 @@ int find_path(int start, int end, t_room *graph, int *distance, char *visited, i
 	u = 1;
 	while (1)
 	{
-		while (i < graph[start].num_of_edges) // смотрим все рёбра
+		while (i < graph[start].ed_num) // смотрим все рёбра
 		{
 			u = graph[start].edges[i];
 			if ((distance[u] == distance[start] + 1) && (visited[u] == '\0')) // если смежная вершина в следующем слое(поиск по вспомогательной слоистой сети)
@@ -38,7 +38,7 @@ int find_path(int start, int end, t_room *graph, int *distance, char *visited, i
 			if (start == end)
 				return (top);
 		}
-		if (i == graph[start].num_of_edges) // все рёбра перебрали, а пути не нашли
+		if (i == graph[start].ed_num) // все рёбра перебрали, а пути не нашли
 		{
 			top--; // убираем со стека
 			if (top == -1)

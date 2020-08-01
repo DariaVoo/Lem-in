@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/01 16:39:50 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/01 16:39:51 by erodd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
 // word_counter
-int	ft_word_counter(char const *s, char c)
+int	ft_wc(char const *s, char c)
 {
 	int	q;
 
@@ -73,7 +85,7 @@ int malloc_rooms_edges(t_room *rooms, int count_rooms)
     i = 0;
     while (i < count_rooms)
     {
-        if (!(rooms[i].edges = (int *)malloc(sizeof(int) * rooms[i].num_of_edges)))
+        if (!(rooms[i].edges = (int *)malloc(sizeof(int) * rooms[i].ed_num)))
             return (0);
         i++;
     }
