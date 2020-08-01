@@ -66,7 +66,7 @@ int     ft_start(t_lemin *lemin, int start_count, int i);
 int     ft_end(t_lemin *lemin, int end_count, int i);
 void start_end_fail(int start_count, int end_count);
 void chk_edge_name(int find_1, int find_2);
-void ft_free_lemin(t_room *rooms, char **spl_f, int room_num, int lines_count, t_path **paths);
+
 
 /*
 ** create functions
