@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	check(int *start, int *top, t_dinic *vars, int u)
+int	check_vertex(int *start, int *top, t_dinic *vars, int u)
 {
 	if ((vars->distance[u] == vars->distance[*start] + 1)
 		&& (vars->visited[u] == '\0'))
@@ -51,7 +51,7 @@ int	find_path(int start, int end, t_room *graph, t_dinic vars)
 		while (vars.i < graph[start].num_of_edges)
 		{
 			u = graph[start].edges[vars.i];
-			check(&start, &top, &vars, u);
+			check_vertex(&start, &top, &vars, u);
 			if (start == end)
 				return (top);
 		}
