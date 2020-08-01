@@ -57,13 +57,13 @@ void	chck_edges(int room_num, t_room *rooms);
 */
 
 void	ft_zero(int *arr, size_t size);
-int		ft_wс(char const *s, char c);
+int		ft_wc(char const *s, char c);
 void	str_init(char **str, char **str2);
 void	**ft_free(void **mas, size_t len);
 void	ft_exit(char *str);
 void	start_end_fail(int start_count, int end_count);
 
-void	ft_free_lemin(t_room *rooms, char **split_file, int room_num, int lines_count, t_path **paths);
+
 
 /*
 ** create functions
@@ -123,4 +123,6 @@ int		step_all(t_path *current, t_room *graph, int *move);
 int		move_ants(t_path *path, t_room *graph, int *move);
 int		set_ant(t_path *paths, int ant, t_room *graph, int *move);
 void	print_n(int *move);
+
+void	ft_free_lemin(t_room *rooms, char **split_file, int room_num, int lines_count, t_path **paths);
 #endif
