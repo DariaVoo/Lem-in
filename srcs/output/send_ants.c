@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int step_all(t_path *current, t_room *graph, int *move)
+int		step_all(t_path *current, t_room *graph, int *move)
 {
 	int at_finish;
 
@@ -25,7 +25,7 @@ int step_all(t_path *current, t_room *graph, int *move)
 	return (at_finish);
 }
 
-void print_n(int *move)
+void	print_n(int *move)
 {
 	if (*move)
 		ft_printf("\n");
@@ -42,9 +42,8 @@ void	send_ants(t_room *graph, int count_ants, t_path *paths)
 	ant = 1;
 	at_finish = 0;
 	move = 0;
-	while (ant < count_ants + 1)
+	while (ant < count_ants + 1 && (current = paths))
 	{
-		current = paths;
 		while (current)
 		{
 			if (count_ants - ant < current->prior)
@@ -55,9 +54,8 @@ void	send_ants(t_room *graph, int count_ants, t_path *paths)
 		at_finish += step_all(current, graph, &move);
 		print_n(&move);
 	}
-	while (at_finish < count_ants)
+	while (at_finish < count_ants && (current = paths))
 	{
-		current = paths;
 		at_finish += step_all(current, graph, &move);
 		print_n(&move);
 	}

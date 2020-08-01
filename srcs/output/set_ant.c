@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int set_ant(t_path *paths, int ant, t_room *graph, int *move)
+int	set_ant(t_path *paths, int ant, t_room *graph, int *move)
 {
 	int i;
 	int finish;
