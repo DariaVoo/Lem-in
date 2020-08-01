@@ -93,6 +93,7 @@ int	main(void)
 		i++;
 	}
 	create_rooms(lemin.room_num, rooms, &lemin, split_file);
+	chck_rooms(lemin.room_num, rooms);
 
 	// Парсим ребра в массив
 	int     edges[lemin.edges_num * 2];
@@ -103,6 +104,7 @@ int	main(void)
 		exit (1);
 	}
 	init_rooms_edges(rooms, lemin.edges_num * 2, edges, &lemin);
+	chck_edges(lemin.room_num, rooms);
 
  	/** Логика*/
 	paths = dinic(rooms, lemin.room_num, lemin.room_num - 1);
@@ -116,14 +118,6 @@ int	main(void)
 	}
 
 	/** Free*/
-	i = 0;
-	while (i < lemin.room_num)
-	{
-		free(rooms[i].name);
-		free(rooms[i].edges);
-		i++;
-	}
-	ft_free((void**)split_file, lemin.lines_count);
-	free_paths(&paths);
+	ft_free_lemin(rooms, split_file, lemin.room_num, lemin.lines_count, &paths);
 	return (0);
 }

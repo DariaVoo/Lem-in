@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: snorcros <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/13 15:31:03 by snorcros          #+#    #+#             */
-/*   Updated: 2020/08/01 12:35:29 by snorcros         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef LEMIN_H
 # define LEMIN_H
 
@@ -51,23 +39,31 @@ void	init_rooms(t_room *room);
 ** Parser functions
 */
 
-char	**parser_file(char **split_file);
+char	**parser_file(char **spl);
 void	count_items(char **split_file, int lines_count, t_lemin *lemin);
 int		ant_count(char *line);
+
 
 /*
 ** validation functions
 */
 
-void	file_checker(char **split_file, t_lemin *lemin);
+void    file_checker(char **split_file, t_lemin *lemin);
+void	chck_rooms(int room_num, t_room *rooms);
+void	chck_edges(int room_num, t_room *rooms);
 
 /*
 ** util functions
 */
 
 void	ft_zero(int *arr, size_t size);
-int		ft_word_counter(char const *s, char c);
+int		ft_wс(char const *s, char c);
+void	str_init(char **str, char **str2);
 void	**ft_free(void **mas, size_t len);
+void	ft_exit(char *str);
+void	start_end_fail(int start_count, int end_count);
+
+void	ft_free_lemin(t_room *rooms, char **split_file, int room_num, int lines_count, t_path **paths);
 
 /*
 ** create functions
