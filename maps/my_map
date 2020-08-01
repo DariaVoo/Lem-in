@@ -3,7 +3,7 @@
 ##start
 ss 3 3
 ##end
-finish a8 a8
+finish 0 0
 a1 4 4
 a2 7 7
 a3 10 10
