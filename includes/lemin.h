@@ -23,7 +23,7 @@ typedef struct	s_room
 	char	*name;
 	int		x;
 	int		y;
-	int		num_of_edges;
+	int		ed_num;
 	int		index_edge;
 	int		*edges;
 }				t_room;
@@ -40,7 +40,7 @@ void	init_rooms(t_room *room);
 */
 
 char	**parser_file(char **spl);
-void	count_items(char **split_file, int lines_count, t_lemin *lemin);
+void	count_items(char **spl_f, int lines_count, t_lemin *lemin);
 int		ant_count(char *line);
 
 
@@ -48,32 +48,36 @@ int		ant_count(char *line);
 ** validation functions
 */
 
-void    file_checker(char **split_file, t_lemin *lemin);
+void    file_checker(char **spl_f, t_lemin *lemin);
 void	chck_rooms(int room_num, t_room *rooms);
-void	chck_edges(int room_num, t_room *rooms);
+void chck_edges(int room_num, t_room *rooms);
+void    count_room_edges(int k, int *edges, t_room *rooms, t_lemin *lemin, char **lines);
 
 /*
 ** util functions
 */
 
 void	ft_zero(int *arr, size_t size);
-int		ft_wc(char const *s, char c);
-void	str_init(char **str, char **str2);
+int	ft_wc(char const *s, char c);
+void str_init(char **str, char **str2);
 void	**ft_free(void **mas, size_t len);
-void	ft_exit(char *str);
-void	start_end_fail(int start_count, int end_count);
-
-
+void ft_exit(char *str);
+int     ft_start(t_lemin *lemin, int start_count, int i);
+int     ft_end(t_lemin *lemin, int end_count, int i);
+void start_end_fail(int start_count, int end_count);
+void chk_edge_name(int find_1, int find_2);
+void ft_free_lemin(t_room *rooms, char **spl_f, int room_num, int lines_count, t_path **paths);
 
 /*
 ** create functions
 */
 
-void	create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **split_file);
-t_room	create_single_room(int id, char *line, t_room *room);
-void	create_edges_arr(int edges_num, int *edges, t_lemin *lemin, char **split_file, t_room *rooms);
-int		malloc_rooms_edges(t_room *rooms, int count_rooms);
-void	init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin);
+void create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **spl_f);
+t_room create_single_room(int id, char *line, t_room *room);
+void create_edges_arr(int *edges, t_lemin *lemin, char **spl_f, t_room *rooms);
+int malloc_rooms_edges(t_room *rooms, int count_rooms);
+void init_rooms_edges(t_room *rooms, int len_edges, int *edges, t_lemin *lemin);
+int add_edge(t_room *rooms, int id_find);
 
 /*
 ** Algorithm

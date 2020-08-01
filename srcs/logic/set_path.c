@@ -25,7 +25,7 @@ int	*set_path(int len, int *stack_path, t_room *graph, int end)
 	while (j < len)
 	{
 		path[i] = stack_path[j];
-		graph[stack_path[j]].num_of_edges = 0;
+		graph[stack_path[j]].ed_num = 0;
 		i++;
 		j++;
 	}

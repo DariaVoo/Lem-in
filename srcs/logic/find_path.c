@@ -48,14 +48,14 @@ int	find_path(int start, int end, t_room *graph, t_dinic vars)
 	vars.queue_stack[top] = start;
 	while (1)
 	{
-		while (vars.i < graph[start].num_of_edges)
+		while (vars.i < graph[start].ed_num)
 		{
 			u = graph[start].edges[vars.i];
 			check_vertex(&start, &top, &vars, u);
 			if (start == end)
 				return (top);
 		}
-		if (vars.i == graph[start].num_of_edges)
+		if (vars.i == graph[start].ed_num)
 			if (!stack_pop(&vars.i, &top, &start, vars.queue_stack))
 				return (0);
 	}

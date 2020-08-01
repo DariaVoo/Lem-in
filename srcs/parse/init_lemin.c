@@ -16,7 +16,7 @@ void    init_rooms(t_room *room)
     room->name = NULL;
     room->x = 0;
     room->y = 0;
-    room->num_of_edges = 0;
+    room->ed_num = 0;
     room->index_edge = 0;
     room->edges = NULL;
 }
