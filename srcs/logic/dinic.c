@@ -24,8 +24,10 @@ void	ft_zero(int *arr, size_t size)
 	}
 }
 
-int		init_dinic(t_dinic *dinic, int count_v)
+int		init_dinic(t_dinic *dinic, int count_v, int end)
 {
+	dinic->end = end;
+	dinic->i = 0;
 	if (!(dinic->visited = ft_strnew(count_v)))
 		return (0);
 	if (!(dinic->distance = (int *)malloc(sizeof(int) * count_v)))
@@ -51,7 +53,7 @@ t_path	*dinic(t_room *graph, int count_v, int end)
 	int		len;
 
 	paths = NULL;
-	if (!init_dinic(&dinic_var, count_v))
+	if (!init_dinic(&dinic_var, count_v, 0))
 		return (NULL);
 	while (bfs(graph, count_v, dinic_var.distance, dinic_var.queue_stack))
 	{

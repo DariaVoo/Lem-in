@@ -85,6 +85,8 @@ typedef struct s_dinic
 	int		*distance;
 	int		*queue_stack;
 	char	*visited;
+	int		end;
+	int		i;
 }				t_dinic;
 
 void ft_zero(int *arr, size_t size);
