@@ -123,8 +123,8 @@ int		*set_path(int len, int *stack_path, t_room *graph, int end);
 ** Output
 */
 void	send_ants(t_room *graph, int count_ants, t_path *paths);
-int		step_all(t_path *current, t_room *graph);
-int		move_ants(t_path *path, t_room *graph);
-int		set_ant(t_path *paths, int ant, t_room *graph);
+int step_all(t_path *current, t_room *graph, int *move);
+int move_ants(t_path *path, t_room *graph, int *move);
+int set_ant(t_path *paths, int ant, t_room *graph, int *move);
 
 #endif

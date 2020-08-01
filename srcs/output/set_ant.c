@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	set_ant(t_path *paths, int ant, t_room *graph)
+int set_ant(t_path *paths, int ant, t_room *graph, int *move)
 {
 	int i;
 	int finish;
@@ -31,6 +31,7 @@ int	set_ant(t_path *paths, int ant, t_room *graph)
 	paths->ants[i] = ant;
 	if (!finish)
 		paths->last_ant++;
+	*move = 1;
 	ft_printf("L%d-%s ", paths->ants[i], graph[paths->path[i]].name);
 	return (finish);
 }

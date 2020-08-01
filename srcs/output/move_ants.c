@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	move_ants(t_path *path, t_room *graph)
+int move_ants(t_path *path, t_room *graph, int *move)
 {
 	int i;
 	int j;
@@ -32,6 +32,7 @@ int	move_ants(t_path *path, t_room *graph)
 	while (j != -1 && path->ants[j] != 0)
 	{
 		path->ants[i] = path->ants[j--];
+		*move = 1;
 		ft_printf("L%d-%s ", path->ants[i], graph[path->path[i]].name);
 		i--;
 	}
