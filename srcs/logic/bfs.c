@@ -27,7 +27,7 @@ int	bfs(t_room *graph, size_t count_v, int *distance, int *queue)
 	{
 		u = queue[head++];
 		j = 0;
-		while (j < graph[u].ed_num) // смотрим все рёбра этой вершины
+		while (j < graph[u].ed_num)
 		{
 			v = graph[u].edges[j++];
 			if (distance[v] == 0 && v != 0)
