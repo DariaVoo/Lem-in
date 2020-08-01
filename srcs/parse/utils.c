@@ -55,7 +55,7 @@ void ft_exit(char *str)
 	exit (EXIT_FAILURE);
 }
 
-void ft_free_lemin(t_room *rooms, char **split, int r_num, int l_num, t_path **paths)
+void ft_free_lemin(t_room *rooms, int r_num, t_path **paths)
 {
 	int i;
 
@@ -66,8 +66,8 @@ void ft_free_lemin(t_room *rooms, char **split, int r_num, int l_num, t_path **p
 		free(rooms[i].edges);
 		i++;
 	}
-	ft_free((void**)split, l_num);
 	free_paths(paths);
+	free(rooms);
 }
 
 void start_end_fail(int start_count, int end_count)

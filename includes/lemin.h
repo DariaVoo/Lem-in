@@ -128,5 +128,5 @@ int		move_ants(t_path *path, t_room *graph, int *move);
 int		set_ant(t_path *paths, int ant, t_room *graph, int *move);
 void	print_n(int *move);
 
-void	ft_free_lemin(t_room *rooms, char **split_file, int room_num, int lines_count, t_path **paths);
+void ft_free_lemin(t_room *rooms, int r_num, t_path **paths);
 #endif
