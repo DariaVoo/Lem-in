@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	bfs(t_room *graph, size_t count_v, int *distance, int *queue)
+int	bfs(t_room *graph, int count_v, int *distance, int *queue)
 {
 	int j;
 	int v;

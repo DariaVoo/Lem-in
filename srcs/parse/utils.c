@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int			ft_wc(char const *s, char c)
+int		ft_wc(char const *s, char c)
 {
 	int		q;
 
@@ -26,13 +26,13 @@ int			ft_wc(char const *s, char c)
 	return (q);
 }
 
-void		ft_exit(char *str)
+void	ft_exit(char *str)
 {
 	ft_printf("%s\nERROR\n", str);
 	exit(EXIT_FAILURE);
 }
 
-char		*ft_strjoin_n(char const *s1, char const *s2)
+char	*ft_strjoin_n(char const *s1, char const *s2)
 {
 	char		*dest;
 	size_t		i;
@@ -60,7 +60,7 @@ char		*ft_strjoin_n(char const *s1, char const *s2)
 	return (dest);
 }
 
-static int	put_new_line(char **vault, char **line, int fd, int bytes)
+int		put_new_line(char **vault, char **line, int fd, int bytes)
 {
 	int			i;
 	char		*tmp;
@@ -84,7 +84,7 @@ static int	put_new_line(char **vault, char **line, int fd, int bytes)
 	return (1);
 }
 
-int			get_next_line_q(const int fd, char **line)
+int		get_next_line_q(const int fd, char **line)
 {
 	char		buffer[BUFF_SIZE + 1];
 	static char	*vault[10240];

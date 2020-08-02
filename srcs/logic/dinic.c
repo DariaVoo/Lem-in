@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void	ft_zero(int *arr, size_t size)
+void	ft_zero(int *arr, int size)
 {
 	int	i;
 
@@ -44,6 +44,7 @@ int		free_dinic(t_dinic *dinic)
 	free(dinic->visited);
 	free(dinic->distance);
 	free(dinic->queue_stack);
+	return (1);
 }
 
 t_path	*dinic(t_room *graph, int count_v, int end)

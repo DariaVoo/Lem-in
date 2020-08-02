@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-int	check_vertex(int *start, int *top, t_dinic *vars, int u)
+void check_vertex(int *start, int *top, t_dinic *vars, int u)
 {
 	if ((vars->distance[u] == vars->distance[*start] + 1)
 		&& (vars->visited[u] == '\0'))

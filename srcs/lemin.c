@@ -18,7 +18,8 @@ int		main(int ac, char **av)
 	t_lemin	lemin;
 	t_room	*rooms;
 
-	if (ac != 1)
+	rooms = NULL;
+	if (ac != 1 && *av)
 	{
 		ft_printf("Usage: ./lem-in < path_to_map\n");
 		return (0);

@@ -14,11 +14,6 @@
 
 int		correct_line(char *str, t_lemin *lemin)
 {
-	char	**lines;
-	int		i;
-
-	lines = NULL;
-	i = 0;
 	if (ft_wc(str, ' ') == 3)
 		return (correct_room(str, lemin));
 	else if (ft_strcmp(str, "##start\0") == 0 ||\
@@ -65,6 +60,7 @@ t_room	*parse_lemin(t_lemin *lemin, t_room *rooms)
 	char	**spl_f;
 	int		*edges;
 
+	spl_f = NULL;
 	init_lemin(lemin);
 	spl_f = parser_file(spl_f, lemin);
 	start_end_count(spl_f, lemin);
@@ -76,7 +72,7 @@ t_room	*parse_lemin(t_lemin *lemin, t_room *rooms)
 	create_edges_arr(edges, lemin, spl_f, rooms);
 	if (!(malloc_rooms_edges(rooms, lemin->room_num)))
 		ft_exit("incorrect MALLOC");
-	init_rooms_edges(rooms, lemin->edges_num * 2, edges, lemin);
+	init_rooms_edges(rooms, lemin->edges_num * 2, edges);
 	chck_edges(lemin->room_num, rooms);
 	free(edges);
 	ft_free((void**)spl_f, lemin->lines_count);
