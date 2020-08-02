@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 15:49:37 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:33:46 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:50:41 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	create_edges_arr(int *edges, t_lemin *lemin, char **spl_f, t_room *rms)
 	int		i;
 	int		k;
 	char	**lines;
+	t_count count;
 
 	i = lemin->room_num;
 	k = 0;
@@ -25,7 +26,9 @@ void	create_edges_arr(int *edges, t_lemin *lemin, char **spl_f, t_room *rms)
 		lines = ft_strsplit(spl_f[i], '-');
 		if (ft_wc(spl_f[i], '-') == 2)
 		{
-			count_room_edges(k, edges, rms, lemin, lines);
+			count.k = k;
+			count.lines = lines;
+			count_room_edges(count, edges, rms, lemin);
 			k += 2;
 		}
 		ft_free((void**)lines, 2);
@@ -82,7 +85,7 @@ void	chck_edges(int room_num, t_room *rooms)
 	}
 }
 
-void	count_room_edges(int k, int *edges, t_room *rooms, t_lemin *lemin, char **lines)
+void	count_room_edges(t_count cnt, int *edges, t_room *rooms, t_lemin *lmn)
 {
 	int		id_find;
 	int		find_1;
@@ -91,18 +94,18 @@ void	count_room_edges(int k, int *edges, t_room *rooms, t_lemin *lemin, char **l
 	id_find = 0;
 	find_1 = 0;
 	find_2 = 0;
-	while (id_find < lemin->room_num)
+	while (id_find < lmn->room_num)
 	{
-		if (find_1 == 0 && ft_strcmp(rooms[id_find].name, lines[0]) == 0)
+		if (find_1 == 0 && ft_strcmp(rooms[id_find].name, cnt.lines[0]) == 0)
 		{
-			edges[k] = add_edge(rooms, id_find);
-			k++;
+			edges[cnt.k] = add_edge(rooms, id_find);
+			cnt.k++;
 			find_1 = 1;
 		}
-		if (find_2 == 0 && ft_strcmp(rooms[id_find].name, lines[1]) == 0)
+		if (find_2 == 0 && ft_strcmp(rooms[id_find].name, cnt.lines[1]) == 0)
 		{
-			edges[k] = add_edge(rooms, id_find);
-			k++;
+			edges[cnt.k] = add_edge(rooms, id_find);
+			cnt.k++;
 			find_2 = 1;
 		}
 		id_find++;

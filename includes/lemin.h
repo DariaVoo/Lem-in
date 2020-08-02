@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 16:56:16 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 17:01:02 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:48:31 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct		s_room
 	int		*edges;
 }					t_room;
 
+typedef struct		s_count
+{
+	int				k;
+	char			**lines;
+}					t_count;
+
 /*
 ** Init functions
 */
@@ -68,7 +74,7 @@ void			file_checker(char **spl_f, t_lemin *lemin);
 t_room			*make_rooms(t_room *rooms, t_lemin *lemin);
 void			chck_rooms(int room_num, t_room *rooms);
 void			chck_edges(int room_num, t_room *rooms);
-void			count_room_edges(int k, int *edges, t_room *rooms, t_lemin *lemin, char **lines);
+void			count_room_edges(t_count count, int *edges, t_room *rooms, t_lemin *lemin);
 
 /*
 ** util functions
