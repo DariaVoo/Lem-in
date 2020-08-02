@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:39:50 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:54:44 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:23:28 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			ft_wc(char const *s, char c)
 
 void		ft_exit(char *str)
 {
-	ft_printf("%s\n ERROR\n", str);
+	ft_printf("%s\nERROR\n", str);
 	exit(EXIT_FAILURE);
 }
 

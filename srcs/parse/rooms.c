@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 15:49:41 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:43:17 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:09:32 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	chck_rooms(int room_num, t_room *rooms)
 		while (j < room_num)
 		{
 			if (ft_strcmp(rooms[i].name, rooms[j].name) == 0)
-				ft_exit("same ROOM name\n");
+				ft_exit("same ROOM name");
 			j++;
 		}
 		i++;

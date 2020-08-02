@@ -6,32 +6,17 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/25 12:32:43 by snorcros          #+#    #+#             */
-/*   Updated: 2020/08/02 02:43:52 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:24:47 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room *make_rooms(t_room *rooms, t_lemin *lemin)
+int		main(int ac, char **av)
 {
-	int		i;
-	
-	i = 0;
-	if (!(rooms = (t_room *)malloc(sizeof(t_room) * lemin->room_num)))
-		ft_exit("incorrect MALLOC");
-	while (i < lemin->room_num)
-	{
-		init_rooms(&rooms[i]);
-		i++;
-	}
-	return (rooms);
-}
-
-int	main(int ac, char **av)
-{
-	t_path *paths;
-	t_lemin lemin;
-	t_room *rooms;
+	t_path	*paths;
+	t_lemin	lemin;
+	t_room	*rooms;
 
 	if (ac != 1)
 	{
