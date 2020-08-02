@@ -2,7 +2,7 @@
 School 21 project 
 
 ## Task
-We have a ants farm - it's rooms and the tunnels connecting these rooms. The goal of the project is to find the _quickest way_ to guide N ants through this farm. 
+We have an ants farm - it's rooms and the tunnels connecting these rooms. The goal of the project is to find the _quickest way_ to guide N ants through this farm. 
 _Quickest way_ means the solution with the least number of lines, respecting the output format requested in subject.
 
 ### Basic constraints: 
