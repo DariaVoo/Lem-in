@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lemin.c                                       :+:      :+:    :+:   */
+/*   rooms2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/02 16:40:13 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:45:53 by erodd            ###   ########.fr       */
+/*   Created: 2020/08/02 16:47:05 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/02 16:55:40 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	init_lemin(t_lemin *lemin)
+int		ft_start(t_lemin *lemin, int start_count, int i)
 {
-	lemin->ant_num = 0;
-	lemin->edges_num = 0;
-	lemin->end_num = 0;
-	lemin->room_num = 0;
-	lemin->start_num = 0;
-	lemin->lines_count = 1;
+	lemin->start_num = i + 1;
+	return (start_count + 1);
 }
 
-void	init_rooms(t_room *room)
+int		ft_end(t_lemin *lemin, int end_count, int i)
 {
-	room->id = 0;
-	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
-	room->ed_num = 0;
-	room->index_edge = 0;
-	room->edges = NULL;
+	lemin->end_num = i + 1;
+	return (end_count + 1);
 }
 
-void	str_init(char **str, char **str2, char **str3)
+void	start_end_fail(int start_count, int end_count)
 {
-	*str = NULL;
-	*str2 = NULL;
-	*str3 = NULL;
+	if (start_count > 1 || start_count == 0)
+		ft_exit("Incorrect START count");
+	if (end_count > 1 || end_count == 0)
+		ft_exit("Incorrect END count");
 }

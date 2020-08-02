@@ -1,16 +1,79 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   rooms.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/01 16:39:33 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/01 17:59:42 by erodd            ###   ########.fr       */
+/*   Created: 2020/08/02 15:49:41 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/02 16:43:17 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+int		correct_room(char *str, t_lemin *lemin)
+{
+	char	**lines;
+	int		i;
+
+	lines = ft_strsplit(str, ' ');
+	i = 0;
+	if (str[0] == 'L')
+		ft_exit("incorrect ROOM name");
+	while (ft_isdigit(lines[1][i]) || lines[1][i] == '-')
+		i++;
+	if (lines[1][i])
+		ft_exit("Incorrect coordinates");
+	i = 0;
+	while (ft_isdigit(lines[2][i]) || lines[2][i] == '-')
+		i++;
+	if (lines[2][i])
+		ft_exit("Incorrect coordinates");
+	lemin->room_num++;
+	return (1);
+}
+
+void	chck_rooms(int room_num, t_room *rooms)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < room_num)
+	{
+		j = i + 1;
+		while (j < room_num)
+		{
+			if (ft_strcmp(rooms[i].name, rooms[j].name) == 0)
+				ft_exit("same ROOM name\n");
+			j++;
+		}
+		i++;
+	}
+}
+
+void	start_end_count(char **spl_f, t_lemin *lemin)
+{
+	int		i;
+	int		start_count;
+	int		end_count;
+
+	i = 1;
+	start_count = 0;
+	end_count = 0;
+	while (i < lemin->lines_count)
+	{
+		if (ft_strcmp(spl_f[i], "##start\0") == 0 &&
+				ft_wc(spl_f[i + 1], ' ') == 3)
+			start_count = ft_start(lemin, start_count, i);
+		if (ft_strcmp(spl_f[i], "##end\0") == 0 &&
+				ft_wc(spl_f[i + 1], ' ') == 3)
+			end_count = ft_end(lemin, end_count, i);
+		i++;
+	}
+	start_end_fail(start_count, end_count);
+}
 
 void	create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **spl_f)
 {
@@ -43,50 +106,12 @@ void	create_rooms(int room_num, t_room *rooms, t_lemin *lemin, char **spl_f)
 t_room	create_single_room(int id, char *line, t_room *room)
 {
 	char	**lines;
-	int		i;
 
-	i = 0;
 	lines = ft_strsplit(line, ' ');
 	room->id = id;
 	room->name = ft_strdup(lines[0]);
-	while (ft_isdigit(lines[1][i]) || lines[1][i] == '-')
-		i++;
-	if (lines[1][i])
-		ft_exit("Incorrect coordinates\n");
-	i = 0;
-	while (ft_isdigit(lines[2][i]) || lines[2][i] == '-')
-		i++;
-	if (lines[2][i])
-		ft_exit("Incorrect coordinates\n");
 	room->x = ft_atoi(lines[1]);
 	room->y = ft_atoi(lines[2]);
 	ft_free((void**)lines, 3);
 	return (*room);
-}
-
-void	create_edges_arr(int *edges, t_lemin *lemin, char **spl_f, t_room *rms)
-{
-	int		i;
-	int		k;
-	char	**lines;
-
-	i = lemin->room_num;
-	k = 0;
-	while (i < lemin->lines_count)
-	{
-		lines = ft_strsplit(spl_f[i], '-');
-		if (ft_wc(spl_f[i], '-') == 2)
-		{
-			count_room_edges(k, edges, rms, lemin, lines);
-			k += 2;
-		}
-		ft_free((void**)lines, 2);
-		i++;
-	}
-}
-
-int		add_edge(t_room *rooms, int id_find)
-{
-	rooms[id_find].ed_num++;
-	return (rooms[id_find].id);
 }

@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lemin.c                                       :+:      :+:    :+:   */
+/*   edges2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/02 16:40:13 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:45:53 by erodd            ###   ########.fr       */
+/*   Created: 2020/08/02 16:32:22 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/02 16:33:31 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	init_lemin(t_lemin *lemin)
+void	chk_edge_name(int find_1, int find_2)
 {
-	lemin->ant_num = 0;
-	lemin->edges_num = 0;
-	lemin->end_num = 0;
-	lemin->room_num = 0;
-	lemin->start_num = 0;
-	lemin->lines_count = 1;
+	if (find_1 == 0 || find_2 == 0)
+		ft_exit("Incorrect EDGE name\n");
 }
 
-void	init_rooms(t_room *room)
+int		correct_edge(char *str, t_lemin *lemin)
 {
-	room->id = 0;
-	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
-	room->ed_num = 0;
-	room->index_edge = 0;
-	room->edges = NULL;
-}
+	char **lines;
 
-void	str_init(char **str, char **str2, char **str3)
-{
-	*str = NULL;
-	*str2 = NULL;
-	*str3 = NULL;
+	lemin->edges_num++;
+	lines = ft_strsplit(str, '-');
+	if (lines[0] == lines[1])
+	{
+		ft_strdel(lines);
+		ft_exit("ROOM links theirselves");
+	}
+	ft_free((void **)lines, 2);
+	return (1);
 }

@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lemin.c                                       :+:      :+:    :+:   */
+/*   all_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/02 16:40:13 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:45:53 by erodd            ###   ########.fr       */
+/*   Created: 2020/08/02 16:52:19 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/02 16:55:17 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	init_lemin(t_lemin *lemin)
+void	**ft_free(void **mas, size_t len)
 {
-	lemin->ant_num = 0;
-	lemin->edges_num = 0;
-	lemin->end_num = 0;
-	lemin->room_num = 0;
-	lemin->start_num = 0;
-	lemin->lines_count = 1;
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		free(mas[i]);
+		mas[i] = NULL;
+		i++;
+	}
+	free(mas);
+	mas = NULL;
+	return (mas);
 }
 
-void	init_rooms(t_room *room)
+void	ft_free_lemin(t_room *rooms, int r_num, t_path **paths)
 {
-	room->id = 0;
-	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
-	room->ed_num = 0;
-	room->index_edge = 0;
-	room->edges = NULL;
-}
+	int		i;
 
-void	str_init(char **str, char **str2, char **str3)
-{
-	*str = NULL;
-	*str2 = NULL;
-	*str3 = NULL;
+	i = 0;
+	while (i < r_num)
+	{
+		free(rooms[i].name);
+		free(rooms[i].edges);
+		i++;
+	}
+	free_paths(paths);
+	free(rooms);
 }

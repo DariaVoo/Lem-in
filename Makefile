@@ -13,13 +13,11 @@ INCLUDES := -I $(HEADERS_DIR) -I $(LIBFT_HEADERS_DIR)
 
 SRC_DIR = srcs/
 SRC_DIR_PARSE = parse/
-SRC_DIR_VALIDATE = validate/
 SRC_DIR_LOGIC = logic/
 SRC_DIR_OUTPUT = output/
 
 SRC_MAIN = lemin.c
-SRC_PARSE_FILES = count_items.c init_lemin.c parser.c utils.c create.c
-SRC_VALIDATE_FILES = validate_file.c
+SRC_PARSE_FILES = init_lemin.c parser.c utils.c ants.c edges.c edges2.c rooms.c rooms2.c all_free.c
 SRC_LOGIC_FILES = bfs.c dinic.c find_path.c set_path.c add_path.c new_path.c reverse_paths.c free_paths.c
 SRC_OUTPUT_FILES = send_ants.c set_prior.c move_ants.c set_ant.c
 

@@ -6,16 +6,15 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:39:50 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/01 16:39:51 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 16:54:44 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-// word_counter
-int	ft_wc(char const *s, char c)
+int			ft_wc(char const *s, char c)
 {
-	int	q;
+	int		q;
 
 	q = 0;
 	while (*s)
@@ -27,67 +26,89 @@ int	ft_wc(char const *s, char c)
 	return (q);
 }
 
-void str_init(char **str, char **str2)
+void		ft_exit(char *str)
 {
-	*str = NULL;
-	*str2 = NULL;
+	ft_printf("%s\n ERROR\n", str);
+	exit(EXIT_FAILURE);
 }
 
-void	**ft_free(void **mas, size_t len)
+char		*ft_strjoin_n(char const *s1, char const *s2)
 {
-	size_t	i;
+	char		*dest;
+	size_t		i;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 2));
+	if (!dest)
+		return (NULL);
+	while (*s1)
+	{
+		dest[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2)
+	{
+		dest[i] = *s2;
+		i++;
+		s2++;
+	}
+	dest[i] = '\n';
+	dest[i + 1] = '\0';
+	return (dest);
+}
+
+static int	put_new_line(char **vault, char **line, int fd, int bytes)
+{
+	int			i;
+	char		*tmp;
 
 	i = 0;
-	while (i < len)
-	{
-		free(mas[i]);
-		mas[i] = NULL;
+	while (vault[fd][i] != '\n' && vault[fd][i] != '\0')
 		i++;
-	}
-	free(mas);
-	mas = NULL;
-	return (mas);
-}
-
-void ft_exit(char *str)
-{
-	ft_putstr(str);
-	exit (EXIT_FAILURE);
-}
-
-void ft_free_lemin(t_room *rooms, int r_num, t_path **paths)
-{
-	int i;
-
-	i = 0;
-	while (i < r_num)
+	*line = ft_strsub(vault[fd], 0, i);
+	if (vault[fd][i] == '\0')
 	{
-		free(rooms[i].name);
-		free(rooms[i].edges);
-		i++;
+		if (bytes == BUFF_SIZE)
+			return (0);
+		ft_strdel(&vault[fd]);
 	}
-	free_paths(paths);
-	free(rooms);
+	else if (vault[fd][i] == '\n')
+	{
+		tmp = ft_strsub(vault[fd], i + 1, ft_strlen(vault[fd]) - i);
+		ft_strdel(&vault[fd]);
+		vault[fd] = tmp;
+	}
+	return (1);
 }
 
-void start_end_fail(int start_count, int end_count)
+int			get_next_line_q(const int fd, char **line)
 {
-	if (start_count > 1 || start_count == 0)
-		ft_exit("Incorrect START count\n");
-	if (end_count > 1 || end_count == 0)
-		ft_exit("Incorrect END count\n");
-}
+	char		buffer[BUFF_SIZE + 1];
+	static char	*vault[10240];
+	char		*tmp;
+	int			bytes;
 
-int malloc_rooms_edges(t_room *rooms, int count_rooms)
-{
-    int i;
-
-    i = 0;
-    while (i < count_rooms)
-    {
-        if (!(rooms[i].edges = (int *)malloc(sizeof(int) * rooms[i].ed_num)))
-            return (0);
-        i++;
-    }
-    return (1);
+	if (fd < 0 || fd > 10240 || line == NULL)
+		return (-1);
+	while ((bytes = read(fd, buffer, BUFF_SIZE)) > 0)
+	{
+		buffer[bytes] = '\0';
+		if (vault[fd] == NULL)
+			vault[fd] = ft_strnew(0);
+		tmp = ft_strjoin(vault[fd], buffer);
+		ft_strdel(&vault[fd]);
+		vault[fd] = tmp;
+		if (ft_strchr(buffer, '\n'))
+			break ;
+	}
+	if (bytes < 0)
+		return (-1);
+	else if ((bytes == 0 && vault[fd] == NULL) || \
+	(bytes == 0 && vault[fd][0] == '\0'))
+		return (0);
+	else
+		return (put_new_line(vault, line, fd, bytes));
 }

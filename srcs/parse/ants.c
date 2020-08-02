@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lemin.c                                       :+:      :+:    :+:   */
+/*   ants.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/02 16:40:13 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:45:53 by erodd            ###   ########.fr       */
+/*   Created: 2020/08/02 15:49:44 by erodd             #+#    #+#             */
+/*   Updated: 2020/08/02 16:20:07 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	init_lemin(t_lemin *lemin)
+int		ant_count(char *line)
 {
-	lemin->ant_num = 0;
-	lemin->edges_num = 0;
-	lemin->end_num = 0;
-	lemin->room_num = 0;
-	lemin->start_num = 0;
-	lemin->lines_count = 1;
-}
+	int	ant_count;
+	int	i;
 
-void	init_rooms(t_room *room)
-{
-	room->id = 0;
-	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
-	room->ed_num = 0;
-	room->index_edge = 0;
-	room->edges = NULL;
-}
-
-void	str_init(char **str, char **str2, char **str3)
-{
-	*str = NULL;
-	*str2 = NULL;
-	*str3 = NULL;
+	i = 0;
+	while (ft_isdigit(line[i]))
+		i++;
+	if (line[i])
+		ft_exit("Incorrect input of ANTS");
+	ant_count = ft_atoi(line);
+	if (ant_count < 1 || ant_count > INT32_MAX)
+		ft_exit("Incorrect number of ANTS");
+	return (ant_count);
 }
