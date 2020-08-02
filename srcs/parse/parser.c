@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/01 16:40:07 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 16:19:31 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 20:16:53 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	**parser_file(char **spl, t_lemin *lemin)
 	{
 		if (correct_line(tmp, lemin))
 			str2 = ft_strjoin_n(str, tmp);
+		else
+			ft_exit("Incorrect MAP");
 		lemin->lines_count++;
 		free(str);
 		str = str2;
@@ -50,9 +52,22 @@ char	**parser_file(char **spl, t_lemin *lemin)
 	if (ft_strstr(str2, "\n\n") != 0 || (spl = ft_strsplit(str2, '\n')) == NULL)
 		ft_exit("Wrong MAP");
 	str = NULL;
-	ft_printf("%s\n", str2);
 	ft_strdel(&str2);
 	return (spl);
+}
+
+void	print_input(char **spl_f, t_lemin *lemin)
+{
+	int		i;
+
+	i = 0;
+	while (i < lemin->lines_count)
+	{
+		ft_putstr(spl_f[i]);
+		ft_putchar('\n');
+		i++;
+	}
+	ft_putchar('\n');
 }
 
 t_room	*parse_lemin(t_lemin *lemin, t_room *rooms)
@@ -74,6 +89,7 @@ t_room	*parse_lemin(t_lemin *lemin, t_room *rooms)
 		ft_exit("incorrect MALLOC");
 	init_rooms_edges(rooms, lemin->edges_num * 2, edges);
 	chck_edges(lemin->room_num, rooms);
+	print_input(spl_f, lemin);
 	free(edges);
 	ft_free((void**)spl_f, lemin->lines_count);
 	return (rooms);
