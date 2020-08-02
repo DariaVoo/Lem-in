@@ -19,3 +19,4 @@ After cloning the repository run the following commands in the terminal
 1. `make`
 2. `./lem-in < MAP_FILE`
 
+![usage](screen_usage.png)
