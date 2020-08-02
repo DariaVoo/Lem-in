@@ -6,7 +6,7 @@
 /*   By: erodd <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/02 15:49:41 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/02 17:09:32 by erodd            ###   ########.fr       */
+/*   Updated: 2020/08/02 17:33:58 by erodd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int		correct_room(char *str, t_lemin *lemin)
 		i++;
 	if (lines[2][i])
 		ft_exit("Incorrect coordinates");
+	ft_free((void **)lines, 3);
 	lemin->room_num++;
 	return (1);
 }
