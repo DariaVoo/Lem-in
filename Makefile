@@ -1,5 +1,5 @@
 NAME = lem-in
-CFLAGS := -O2 -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a

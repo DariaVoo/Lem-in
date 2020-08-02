@@ -12,7 +12,7 @@
 
 #include "lemin.h"
 
-void check_vertex(int *start, int *top, t_dinic *vars, int u)
+void	check_vertex(int *start, int *top, t_dinic *vars, int u)
 {
 	if ((vars->distance[u] == vars->distance[*start] + 1)
 		&& (vars->visited[u] == '\0'))
@@ -28,7 +28,7 @@ void check_vertex(int *start, int *top, t_dinic *vars, int u)
 		vars->i++;
 }
 
-int	stack_pop(int *i, int *top, int *start, int *stack)
+int		stack_pop(int *i, int *top, int *start, int *stack)
 {
 	*top -= 1;
 	if (*top == -1)
@@ -38,7 +38,7 @@ int	stack_pop(int *i, int *top, int *start, int *stack)
 	return (1);
 }
 
-int	find_path(int start, int end, t_room *graph, t_dinic vars)
+int		find_path(int start, int end, t_room *graph, t_dinic vars)
 {
 	int u;
 	int top;

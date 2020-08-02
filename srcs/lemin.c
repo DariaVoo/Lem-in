@@ -27,7 +27,7 @@ int		main(int ac, char **av)
 	rooms = parse_lemin(&lemin, rooms);
 	paths = dinic(rooms, lemin.room_num, lemin.room_num - 1);
 	if (!paths)
-		ft_printf("No Path!\n");
+		ft_exit("No Path!");
 	else
 	{
 		set_prior(paths);

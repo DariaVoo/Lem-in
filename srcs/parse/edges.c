@@ -42,7 +42,7 @@ int		add_edge(t_room *rooms, int id_find)
 	return (rooms[id_find].id);
 }
 
-void init_rooms_edges(t_room *rooms, int l_edges, int *edges)
+void	init_rooms_edges(t_room *rooms, int l_edges, int *edges)
 {
 	int		i;
 	int		j;
